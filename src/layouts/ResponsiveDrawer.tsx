@@ -57,6 +57,17 @@ export default (): JSX.Element => {
           </ListItem>
         ))}
       </List>
+      <Divider />
+      <List>
+        {["Dark Mode", "Account"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
     </div>
   )
 
