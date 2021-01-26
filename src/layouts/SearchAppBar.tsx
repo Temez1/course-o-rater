@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
         width: (drawerWidth) => `calc(100% - ${drawerWidth}px)`,
         marginLeft: (drawerWidth) => drawerWidth,
       },
+      color: "default",
     },
     title: {
       flexGrow: 1,
@@ -73,7 +74,7 @@ export default ({
   const classes = useStyles(drawerWidth)
 
   return (
-    <AppBar position="fixed" className={classes.appBar}>
+    <AppBar className={classes.appBar}>
       <Toolbar>
         <IconButton
           onClick={handleDrawerToggle}

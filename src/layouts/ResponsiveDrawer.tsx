@@ -6,8 +6,10 @@ import InboxIcon from "@material-ui/icons/MoveToInbox"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import ListItemText from "@material-ui/core/ListItemText"
-import MailIcon from "@material-ui/icons/Mail"
+import LightBulbIcon from "@material-ui/icons/WbIncandescent"
+import Switch from "@material-ui/core/Switch"
 import {
   makeStyles,
   useTheme,
@@ -34,13 +36,25 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default (): JSX.Element => {
+type ResponsiveDrawerProps = {
+  darkMode: boolean
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default ({
+  darkMode,
+  setDarkMode,
+}: ResponsiveDrawerProps): JSX.Element => {
   const classes = useStyles()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
+  }
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode)
   }
 
   const drawer = (
@@ -51,7 +65,7 @@ export default (): JSX.Element => {
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {index % 2 === 0 ? <InboxIcon /> : <LightBulbIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -59,14 +73,20 @@ export default (): JSX.Element => {
       </List>
       <Divider />
       <List>
-        {["Dark Mode", "Account"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem>
+          <ListItemIcon>
+            <LightBulbIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dark Mode" />
+          <ListItemSecondaryAction>
+            <Switch
+              edge="end"
+              onChange={handleDarkModeToggle}
+              checked={darkMode}
+              inputProps={{ "aria-labelledby": "switch-list-label-wifi" }}
+            />
+          </ListItemSecondaryAction>
+        </ListItem>
       </List>
     </div>
   )

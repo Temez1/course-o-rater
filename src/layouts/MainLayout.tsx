@@ -3,6 +3,11 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
 import { Outlet } from "react-router-dom"
 import ResponsiveDrawer from "./ResponsiveDrawer"
 
+type MainLayoutProps = {
+  darkMode: boolean
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -16,11 +21,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
-export default (): JSX.Element => {
+export default ({ darkMode, setDarkMode }: MainLayoutProps): JSX.Element => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <ResponsiveDrawer />
+      <ResponsiveDrawer darkMode={darkMode} setDarkMode={setDarkMode} />
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Outlet />
