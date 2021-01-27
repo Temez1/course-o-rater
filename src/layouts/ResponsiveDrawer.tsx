@@ -2,12 +2,13 @@ import React from "react"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
 import Hidden from "@material-ui/core/Hidden"
-import InboxIcon from "@material-ui/icons/MoveToInbox"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import ListItemText from "@material-ui/core/ListItemText"
+import SchoolIcon from "@material-ui/icons/School"
+import StarIcon from "@material-ui/icons/Star"
 import LightBulbIcon from "@material-ui/icons/WbIncandescent"
 import Switch from "@material-ui/core/Switch"
 import {
@@ -16,6 +17,10 @@ import {
   Theme,
   createStyles,
 } from "@material-ui/core/styles"
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from "react-router-dom"
 import SearchAppBar from "./SearchAppBar"
 
 const drawerWidth = 240
@@ -36,6 +41,34 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
+type ListItemLinkProps = {
+  // eslint-disable-next-line react/require-default-props
+  icon?: React.ReactElement
+  primary: string
+  to: string
+}
+
+const ListItemLink = (props: ListItemLinkProps) => {
+  const { icon, primary, to } = props
+
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef<never, Omit<RouterLinkProps, "to">>((itemProps, ref) => (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <RouterLink to={to} ref={ref} {...itemProps} />
+      )),
+    [to]
+  )
+
+  return (
+    <li>
+      <ListItem button component={renderLink}>
+        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  )
+}
 type ResponsiveDrawerProps = {
   darkMode: boolean
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
@@ -62,14 +95,12 @@ export default ({
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <LightBulbIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItemLink to="/" primary="Courses" icon={<SchoolIcon />} />
+        <ListItemLink
+          to="/rate-course"
+          primary="Rate Course"
+          icon={<StarIcon />}
+        />
       </List>
       <Divider />
       <List>

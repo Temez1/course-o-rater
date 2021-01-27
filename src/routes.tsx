@@ -1,6 +1,7 @@
 import React from "react"
 import MainLayout from "./layouts/MainLayout"
-import Home from "./pages/Home"
+import Courses from "./pages/Courses"
+import RateCourse from "./pages/RateCourse"
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const routes = (
@@ -13,7 +14,11 @@ const routes = (
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Courses />,
+      },
+      {
+        path: "/rate-course",
+        element: <RateCourse />,
       },
     ],
   },
