@@ -6,15 +6,22 @@ import { CssBaseline } from "@material-ui/core"
 import routes from "./routes"
 
 export default (): JSX.Element => {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)", {
+    noSsr: true,
+  })
   const [darkMode, setDarkMode] = React.useState(prefersDarkMode)
   const routing = useRoutes(routes(darkMode, setDarkMode))
 
   const darkThemeBackgroundColorPaper = "#424242"
-
   const darkTheme = createMuiTheme({
     palette: {
       type: "dark",
+      background: { paper: darkThemeBackgroundColorPaper },
+    },
+    props: {
+      MuiUseMediaQuery: {
+        noSsr: true,
+      },
     },
     overrides: {
       MuiAppBar: {
@@ -23,7 +30,13 @@ export default (): JSX.Element => {
     },
   })
 
-  const lightTheme = createMuiTheme({})
+  const lightTheme = createMuiTheme({
+    props: {
+      MuiUseMediaQuery: {
+        noSsr: true,
+      },
+    },
+  })
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>

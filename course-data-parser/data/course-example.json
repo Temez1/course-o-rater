@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "createdOn": "2019-12-03T09:52:07.424473",
+    "lastModifiedOn": "2020-10-27T12:00:52.650903",
+    "modificationOrdinal": 130442209
+  },
+  "documentState": "ACTIVE",
+  "id": "otm-000b1049-d521-4f98-ae66-2398661fd8d1",
+  "groupId": "uta-ykoodi-38811",
+  "approvalState": "urn:code:approval-state-type:approved",
+  "credits": { "min": 4, "max": 4 },
+  "completionMethods": [
+    {
+      "localId": "choice0",
+      "description": {
+        "fi": "Pienryhmäopetusta enintään 52 t, itsenäistä työskentelyä vähintään 56 t."
+      },
+      "studyType": "DEGREE_STUDIES",
+      "assessmentItemOptionalityDescription": null,
+      "automaticEvaluation": true,
+      "require": null,
+      "typeOfRequire": "ALL_SELECTED_REQUIRED",
+      "assessmentItemIds": ["uta-ai-v3-21460"],
+      "repeats": [],
+      "evaluationCriteria": {
+        "fi": "Opintojakson arvosanan perusteina ovat aktiivinen osallistuminen suullisiin harjoituksiin sekä sovitut harjoitustyöt ja kokeet."
+      },
+      "prerequisites": null
+    }
+  ],
+  "assessmentItemOrder": ["uta-ai-v3-21460"],
+  "substitutions": [],
+  "name": {
+    "en": "Reading and Talking in Russian",
+    "fi": "Luemme ja keskustelemme venäjäksi"
+  },
+  "code": "KKVE5",
+  "abbreviation": "KKVE5",
+  "validityPeriod": { "startDate": "2020-08-01" },
+  "gradeScaleId": "sis-0-5",
+  "tweetText": null,
+  "outcomes": {
+    "fi": "<p>Opintojakson suoritettuaan opiskelija:</p><p>\n\n\n- osaa luonnehtia tilanteita, tapahtumia, tekijöitä ja suhteita, ja kertoa yksityiskohtia, joilla on merkitystä selittäjinä tai perusteluina,\n</p><p>- osaa havainnoida lukemaansa tai kuulemaansa ja hankkia sekä yhdistellä itsenäisesti yleistajuista tietoa eri lähteistä,\n</p><p>- osaa laatia lyhyehkön suullisen esityksen ja sen tueksi helposti ymmärrettäviä kirjallisia havaintoaineistoja, sekä vastata kuulijoiden tekemiin kysymyksiin.</p>"
+  },
+  "prerequisites": {
+    "fi": "Venäjä IV tai vastaavat tiedot ja taidot (taitotaso A2-B1). Opiskelija kykenee löytämään kuulemastaan ja lukemastaan merkityksellisiä seikkoja ja osaa kertoa tärkeimmän omin sanoin. Hän uskaltaa osallistua joskus spontaanistikin keskusteluihin tavanomaisista puheenaiheista."
+  },
+  "content": {
+    "fi": "Osaamistavoitteet saavuttaakseen täydentää tietojaan venäjän kielen rakenteista ja sanastosta. Hän harjoittelee ryhmässä kuvaamista ja kertomista sekä mielipiteiden vaihtoa. Hän etsii ja yhdistelee tietoa aktiivisesti ja jakaa sitä muille osallistujille. Kurssin lopulla hän myös arvioi yhdessä aikaansaatua ja omaa oppimistaan kohdekielellä (venäjäksi)."
+  },
+  "additional": {
+    "fi": "<p><b>Yleiskuvaus</b></p>\n\n<p>Opintojakso on yksiköiden vaatimusten mukainen vieraan kielen 4 opintopisteen opintojakso. Se sopii myös vapaavalintaiseksi kurssiksi kaikkien alojen opiskelijoille.</p><p><br /></p>\n\n<p><b>Arviointi</b></p>\n\n<p>Opintojakson arvosanan perusteina ovat aktiivinen osallistuminen suullisiin harjoituksiin sekä sovitut harjoitustyöt ja kokeet.</p><p></p><p><b>Koko opetustarjonta</b></p>\n\n<p>Katso venäjän koko opetustarjonta hakusanalla KKVE (keskusta) ja KIE-6 (Hervanta).</p><p>Ks. myös Hervannan kampus KIE-62001 Venäjä 5.<br /></p><p></p>"
+  },
+  "learningMaterial": {
+    "fi": "<p>Oppimateriaali ilmoitetaan opetuksen alkaessa. Lisäksi osallistujat tuovat ja tuottavat materiaalia yhteiseen tarkasteluun.</p>"
+  },
+  "literature": [],
+  "searchTags": ["Kielet, languages"],
+  "categoryTags": [],
+  "recommendedFormalPrerequisites": [],
+  "compulsoryFormalPrerequisites": [],
+  "studyFields": ["urn:code:study-field:okm-3"],
+  "studyLevel": "urn:code:study-level:other-studies",
+  "courseUnitType": "urn:code:course-unit-type:communication-and-linguistic-studies",
+  "subject": null,
+  "cefrLevel": "urn:code:cefr-level:b1",
+  "organisations": [
+    {
+      "organisationId": "tuni-org-1010000009",
+      "educationalInstitutionUrn": null,
+      "roleUrn": "urn:code:organisation-role:responsible-organisation",
+      "share": 1,
+      "validityPeriod": {}
+    }
+  ],
+  "possibleAttainmentLanguages": ["urn:code:language:ru"],
+  "equivalentCoursesInfo": null,
+  "curriculumPeriodIds": ["uta-lvv-2020"],
+  "customCodeUrns": {
+    "urn:code:custom:tuni-university-root-id:strategic-themes": [
+      "urn:code:custom:tuni-university-root-id:strategic-themes:internationalisation"
+    ],
+    "urn:code:custom:tuni-university-root-id:offering-location": [
+      "urn:code:custom:tuni-university-root-id:offering-location:keskusta"
+    ],
+    "urn:code:custom:tuni-university-root-id:offering-information": [
+      "urn:code:custom:tuni-university-root-id:offering-information:degree-students",
+      "urn:code:custom:tuni-university-root-id:offering-information:tampere3-cross-institutional-studies",
+      "urn:code:custom:tuni-university-root-id:offering-information:upper-secondary-school-students"
+    ]
+  },
+  "inclusionApplicationInstruction": null
+}
