@@ -1,5 +1,6 @@
 import React from "react"
 import MainLayout from "./layouts/MainLayout"
+import Course from "./pages/Course"
 import Courses from "./pages/Courses"
 import RateCourse from "./pages/RateCourse"
 
@@ -15,6 +16,10 @@ const routes = (
       {
         path: "/",
         element: <Courses />,
+      },
+      {
+        path: "/course/:id",
+        element: <Course />,
       },
       {
         path: "/rate-course",
