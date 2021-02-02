@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import { CssBaseline } from "@material-ui/core"
+import lightBlue from "@material-ui/core/colors/lightBlue"
 import routes from "./routes"
 
 export default (): JSX.Element => {
@@ -12,20 +13,14 @@ export default (): JSX.Element => {
   const [darkMode, setDarkMode] = React.useState(prefersDarkMode)
   const routing = useRoutes(routes(darkMode, setDarkMode))
 
-  const darkThemeBackgroundColorPaper = "#424242"
   const darkTheme = createMuiTheme({
     palette: {
       type: "dark",
-      background: { paper: darkThemeBackgroundColorPaper },
+      primary: lightBlue,
     },
     props: {
       MuiUseMediaQuery: {
         noSsr: true,
-      },
-    },
-    overrides: {
-      MuiAppBar: {
-        colorPrimary: { backgroundColor: darkThemeBackgroundColorPaper },
       },
     },
   })

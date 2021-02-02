@@ -1,5 +1,4 @@
 import React from "react"
-import { createStyles, Theme, makeStyles } from "@material-ui/core/styles"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
@@ -8,16 +7,6 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    courseList: {
-      width: "100%",
-      maxWidth: 1000,
-      backgroundColor: theme.palette.background.paper,
-    },
-  })
-)
 
 type ListItemLinkProps = {
   courseName: string
@@ -49,10 +38,8 @@ const ListItemLink = (props: ListItemLinkProps) => {
 }
 
 export default (): JSX.Element => {
-  const classes = useStyles()
-
   return (
-    <div className={classes.courseList}>
+    <>
       <List aria-label="List of courses">
         <ListItemLink
           courseName="Course name"
@@ -75,6 +62,6 @@ export default (): JSX.Element => {
           to="course/courseCode"
         />
       </List>
-    </div>
+    </>
   )
 }

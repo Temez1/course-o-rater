@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme: Theme) =>
         width: (drawerWidth) => `calc(100% - ${drawerWidth}px)`,
         marginLeft: (drawerWidth) => drawerWidth,
       },
-      color: "default",
     },
     title: {
       flexGrow: 1,
