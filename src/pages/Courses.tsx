@@ -59,6 +59,21 @@ export default (): JSX.Element => {
           courseCode="Course code"
           to="course/courseCode"
         />
+        <ListItemLink
+          courseName="Course name"
+          courseCode="Course code"
+          to="course/courseCode"
+        />
+        <ListItemLink
+          courseName="Course name"
+          courseCode="Course code"
+          to="course/courseCode"
+        />
+        <ListItemLink
+          courseName="Course name"
+          courseCode="Course code"
+          to="course/courseCode"
+        />
       </List>
     </div>
   )
