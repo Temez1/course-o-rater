@@ -4,8 +4,9 @@ import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import TextField from "@material-ui/core/TextField"
 import Rating from "@material-ui/lab/Rating"
+import { Link } from "react-router-dom"
+import Button from "@material-ui/core/Button"
 import CourseDetailedRatings from "../components/CourseDetailedRatings"
-import RateButton from "../components/RateButton"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,6 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
     rateButtonItem: {
       display: "flex",
       justifyContent: "center",
+    },
+    rateButton: {
+      width: 120,
     },
   })
 )
@@ -72,7 +76,16 @@ anybody can complain.
           <Rating readOnly precision={0.1} defaultValue={3.3} />
         </Grid>
         <Grid item xs={12} className={classes.rateButtonItem}>
-          <RateButton size="large" />
+          <Button
+            component={Link}
+            to="/rate-course"
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.rateButton}
+          >
+            Rate
+          </Button>
         </Grid>
       </Grid>
     </form>

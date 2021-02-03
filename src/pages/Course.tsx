@@ -8,8 +8,9 @@ import Select from "@material-ui/core/Select"
 import InputLabel from "@material-ui/core/InputLabel"
 import FormControl from "@material-ui/core/FormControl"
 import MenuItem from "@material-ui/core/MenuItem"
+import { Link } from "react-router-dom"
+import Button from "@material-ui/core/Button"
 import CourseDetailedRatings from "../components/CourseDetailedRatings"
-import RateButton from "../components/RateButton"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -73,7 +74,14 @@ export default (): JSX.Element => {
           <Typography display="inline"> Ratings </Typography>
         </Grid>
         <Grid item>
-          <RateButton />
+          <Button
+            component={Link}
+            to="/rate-course"
+            variant="contained"
+            color="primary"
+          >
+            Rate
+          </Button>
         </Grid>
         <Grid item>
           <FormControl variant="outlined" className={classes.formControl}>
