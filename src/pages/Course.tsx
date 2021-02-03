@@ -123,28 +123,17 @@ export default (): JSX.Element => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container justify="space-between" alignItems="center">
+      <Grid
+        container
+        spacing={1}
+        justify="space-between"
+        alignItems="center"
+        className={classes.raterContainer}
+      >
         <Grid item>
-          <Typography display="inline"> Name of Rater </Typography>
+          <Typography display="inline"> Name of Rater</Typography>
           <Typography variant="subtitle2" className={classes.ratingDate}>
-            28.1.2021
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Rating readOnly size="small" precision={0.5} defaultValue={3.3} />
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="body2">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industrys standard dummy
-          </Typography>
-        </Grid>
-      </Grid>
-      <Grid container justify="space-between" alignItems="center">
-        <Grid item>
-          <Typography display="inline"> Name of Rater </Typography>
-          <Typography variant="subtitle2" className={classes.ratingDate}>
-            28.1.2021
+            25.1.2021
           </Typography>
         </Grid>
         <Grid item>
