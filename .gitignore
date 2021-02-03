@@ -11,3 +11,7 @@
 
 # create-react-app want's to generate .eslintcache everytime in root dir.
 .eslintcache
+
+# sisu course data is over 100 MB, go download it on your own
+# https://opendata.tuni.fi/tau-curriculum-data/
+sisu-course-data.json
