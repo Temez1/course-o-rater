@@ -95,7 +95,7 @@ anybody can complain.
           <Grid item xs={12} className={classes.rateButtonItem}>
             <Button
               component={Link}
-              to="/rate-course"
+              to="/thanks-for-rating"
               variant="contained"
               color="primary"
               size="large"

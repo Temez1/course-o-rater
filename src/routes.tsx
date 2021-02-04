@@ -3,6 +3,7 @@ import MainLayout from "./layouts/MainLayout"
 import Course from "./pages/Course"
 import Courses from "./pages/Courses"
 import RateCourse from "./pages/RateCourse"
+import ThanksForRating from "./pages/ThanksForRating"
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const routes = (
@@ -24,6 +25,10 @@ const routes = (
       {
         path: "/rate-course",
         element: <RateCourse />,
+      },
+      {
+        path: "thanks-for-rating",
+        element: <ThanksForRating />,
       },
     ],
   },
