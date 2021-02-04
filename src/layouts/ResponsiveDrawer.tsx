@@ -98,7 +98,7 @@ export default ({
       <List>
         <ListItemLink to="/" primary="Courses" icon={<SchoolIcon />} />
         <ListItemLink
-          to="/rate-course"
+          to="/find-course-to-rate"
           primary="Rate Course"
           icon={<StarIcon />}
         />

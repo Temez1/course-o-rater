@@ -92,12 +92,12 @@ export default ({
             <SearchIcon />
           </div>
           <InputBase
-            placeholder="Search…"
+            placeholder="Search course"
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,
             }}
-            inputProps={{ "aria-label": "search" }}
+            inputProps={{ "aria-label": "search course" }}
           />
         </div>
       </Toolbar>

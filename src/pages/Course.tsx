@@ -76,7 +76,7 @@ export default (): JSX.Element => {
         <Grid item>
           <Button
             component={Link}
-            to="/rate-course"
+            to="/rate-course/courseCode"
             variant="contained"
             color="primary"
           >

@@ -2,6 +2,7 @@ import React from "react"
 import MainLayout from "./layouts/MainLayout"
 import Course from "./pages/Course"
 import Courses from "./pages/Courses"
+import FindCourseToRate from "./pages/FindCourseToRate"
 import RateCourse from "./pages/RateCourse"
 import ThanksForRating from "./pages/ThanksForRating"
 
@@ -19,11 +20,15 @@ const routes = (
         element: <Courses />,
       },
       {
+        path: "find-course-to-rate",
+        element: <FindCourseToRate />,
+      },
+      {
         path: "/course/:id",
         element: <Course />,
       },
       {
-        path: "/rate-course",
+        path: "/rate-course/:id",
         element: <RateCourse />,
       },
       {
