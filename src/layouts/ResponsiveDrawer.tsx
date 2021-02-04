@@ -21,7 +21,7 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
-import SearchAppBar from "./SearchAppBar"
+import AppBar from "./AppBar"
 
 const drawerWidth = 240
 
@@ -125,7 +125,7 @@ export default ({
 
   return (
     <>
-      <SearchAppBar
+      <AppBar
         handleDrawerToggle={handleDrawerToggle}
         drawerWidth={drawerWidth}
       />
