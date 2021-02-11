@@ -1,9 +1,28 @@
 import React from "react"
 import List from "@material-ui/core/List"
 import { Grid, TextField } from "@material-ui/core"
+import { API } from "aws-amplify"
 import CourseListItemLink from "../components/CourseListItemLink"
+import { listCourses } from "../graphql/queries"
+import { ListCoursesQuery } from "../API"
 
 export default (): JSX.Element => {
+  const [courses, setCourses] = React.useState<ListCoursesQuery | undefined>(
+    undefined
+  )
+
+  React.useEffect(() => {
+    async function fetchCourses() {
+      const response = (await API.graphql({
+        query: listCourses,
+      })) as { data: ListCoursesQuery }
+      console.log(response.data.listCourses?.items)
+      setCourses(response.data)
+    }
+
+    fetchCourses()
+  }, [])
+
   return (
     <>
       <Grid container spacing={2}>
@@ -17,30 +36,21 @@ export default (): JSX.Element => {
         </Grid>
       </Grid>
       <List aria-label="List of courses">
-        <CourseListItemLink
-          courseName="Course name"
-          courseCode="Course code"
-          to="course/courseCode"
-          findCourseToRate={false}
-        />
-        <CourseListItemLink
-          courseName="Course name"
-          courseCode="Course code"
-          to="course/courseCode"
-          findCourseToRate={false}
-        />
-        <CourseListItemLink
-          courseName="Course name"
-          courseCode="Course code"
-          to="course/courseCode"
-          findCourseToRate={false}
-        />
-        <CourseListItemLink
-          courseName="Course name"
-          courseCode="Course code"
-          to="course/courseCode"
-          findCourseToRate={false}
-        />
+        {courses &&
+          courses.listCourses &&
+          courses.listCourses.items &&
+          courses.listCourses.items.map(
+            (course) =>
+              course && (
+                <CourseListItemLink
+                  key={course.id}
+                  courseName={course.name}
+                  courseCode={course.code}
+                  to={`course/${course.code}`}
+                  findCourseToRate={false}
+                />
+              )
+          )}
       </List>
     </>
   )

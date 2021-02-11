@@ -1,0 +1,25 @@
+type Course
+  @model
+  @key(name: "byName", fields: ["name"])
+  @key(name: "byCode", fields: ["code"])
+  @key(name: "byLocation", fields: ["location"]) {
+  id: ID!
+  name: String!
+  code: String!
+  location: String!
+  courseRatings: [CourseRating!]
+    @connection(keyName: "byCourse", fields: ["id"])
+}
+
+type CourseRating @model @key(name: "byCourse", fields: ["courseID"]) {
+  id: ID!
+  courseID: ID!
+  course: Course @connection(fields: ["courseID"])
+  totalRating: Float!
+  qualityOfLectures: Float!
+  qualityOfExercises: Float
+  amountOfWork: Float!
+  support: Float!
+  happiness: Float
+  feedback: String
+}
