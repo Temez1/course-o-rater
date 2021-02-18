@@ -36,21 +36,18 @@ export default (): JSX.Element => {
         </Grid>
       </Grid>
       <List aria-label="List of courses">
-        {courses &&
-          courses.listCourses &&
-          courses.listCourses.items &&
-          courses.listCourses.items.map(
-            (course) =>
-              course && (
-                <CourseListItemLink
-                  key={course.id}
-                  courseName={course.name}
-                  courseCode={course.code}
-                  to={`course/${course.code}`}
-                  findCourseToRate={false}
-                />
-              )
-          )}
+        {courses?.listCourses?.items?.map(
+          (course) =>
+            course && (
+              <CourseListItemLink
+                key={course.id}
+                courseName={course.name}
+                courseCode={course.code}
+                to={`course/${course.code}`}
+                findCourseToRate={false}
+              />
+            )
+        )}
       </List>
     </>
   )
