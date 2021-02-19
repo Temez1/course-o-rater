@@ -7,12 +7,14 @@ export type CreateCourseInput = {
   name: string
   code: string
   location: string
+  sisuId: string
 }
 
 export type ModelCourseConditionInput = {
   name?: ModelStringInput | null
   code?: ModelStringInput | null
   location?: ModelStringInput | null
+  sisuId?: ModelStringInput | null
   and?: Array<ModelCourseConditionInput | null> | null
   or?: Array<ModelCourseConditionInput | null> | null
   not?: ModelCourseConditionInput | null
@@ -63,6 +65,7 @@ export type Course = {
   name?: string
   code?: string
   location?: string
+  sisuId?: string
   courseRatings?: ModelCourseRatingConnection
   createdAt?: string
   updatedAt?: string
@@ -95,6 +98,7 @@ export type UpdateCourseInput = {
   name?: string | null
   code?: string | null
   location?: string | null
+  sisuId?: string | null
 }
 
 export type DeleteCourseInput = {
@@ -176,6 +180,7 @@ export type ModelCourseFilterInput = {
   name?: ModelStringInput | null
   code?: ModelStringInput | null
   location?: ModelStringInput | null
+  sisuId?: ModelStringInput | null
   and?: Array<ModelCourseFilterInput | null> | null
   or?: Array<ModelCourseFilterInput | null> | null
   not?: ModelCourseFilterInput | null
@@ -214,6 +219,7 @@ export type CreateCourseMutation = {
     name: string
     code: string
     location: string
+    sisuId: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -249,6 +255,7 @@ export type UpdateCourseMutation = {
     name: string
     code: string
     location: string
+    sisuId: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -284,6 +291,7 @@ export type DeleteCourseMutation = {
     name: string
     code: string
     location: string
+    sisuId: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -323,6 +331,7 @@ export type CreateCourseRatingMutation = {
       name: string
       code: string
       location: string
+      sisuId: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null
@@ -358,6 +367,7 @@ export type UpdateCourseRatingMutation = {
       name: string
       code: string
       location: string
+      sisuId: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null
@@ -393,6 +403,7 @@ export type DeleteCourseRatingMutation = {
       name: string
       code: string
       location: string
+      sisuId: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null
@@ -423,6 +434,7 @@ export type GetCourseQuery = {
     name: string
     code: string
     location: string
+    sisuId: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -461,6 +473,7 @@ export type ListCoursesQuery = {
       name: string
       code: string
       location: string
+      sisuId: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null
@@ -487,6 +500,7 @@ export type GetCourseRatingQuery = {
       name: string
       code: string
       location: string
+      sisuId: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null
@@ -525,6 +539,7 @@ export type ListCourseRatingsQuery = {
         name: string
         code: string
         location: string
+        sisuId: string
         createdAt: string
         updatedAt: string
       } | null
@@ -549,6 +564,7 @@ export type OnCreateCourseSubscription = {
     name: string
     code: string
     location: string
+    sisuId: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -579,6 +595,7 @@ export type OnUpdateCourseSubscription = {
     name: string
     code: string
     location: string
+    sisuId: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -609,6 +626,7 @@ export type OnDeleteCourseSubscription = {
     name: string
     code: string
     location: string
+    sisuId: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -643,6 +661,7 @@ export type OnCreateCourseRatingSubscription = {
       name: string
       code: string
       location: string
+      sisuId: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null
@@ -673,6 +692,7 @@ export type OnUpdateCourseRatingSubscription = {
       name: string
       code: string
       location: string
+      sisuId: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null
@@ -703,6 +723,7 @@ export type OnDeleteCourseRatingSubscription = {
       name: string
       code: string
       location: string
+      sisuId: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null

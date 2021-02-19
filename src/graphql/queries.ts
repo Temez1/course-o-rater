@@ -9,6 +9,7 @@ export const getCourse = /* GraphQL */ `
       name
       code
       location
+      sisuId
       courseRatings {
         items {
           id
@@ -42,6 +43,7 @@ export const listCourses = /* GraphQL */ `
         name
         code
         location
+        sisuId
         courseRatings {
           nextToken
         }
@@ -62,6 +64,7 @@ export const getCourseRating = /* GraphQL */ `
         name
         code
         location
+        sisuId
         courseRatings {
           nextToken
         }
@@ -95,6 +98,7 @@ export const listCourseRatings = /* GraphQL */ `
           name
           code
           location
+          sisuId
           createdAt
           updatedAt
         }

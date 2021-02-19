@@ -12,6 +12,7 @@ export const createCourse = /* GraphQL */ `
       name
       code
       location
+      sisuId
       courseRatings {
         items {
           id
@@ -43,6 +44,7 @@ export const updateCourse = /* GraphQL */ `
       name
       code
       location
+      sisuId
       courseRatings {
         items {
           id
@@ -74,6 +76,7 @@ export const deleteCourse = /* GraphQL */ `
       name
       code
       location
+      sisuId
       courseRatings {
         items {
           id
@@ -108,6 +111,7 @@ export const createCourseRating = /* GraphQL */ `
         name
         code
         location
+        sisuId
         courseRatings {
           nextToken
         }
@@ -139,6 +143,7 @@ export const updateCourseRating = /* GraphQL */ `
         name
         code
         location
+        sisuId
         courseRatings {
           nextToken
         }
@@ -170,6 +175,7 @@ export const deleteCourseRating = /* GraphQL */ `
         name
         code
         location
+        sisuId
         courseRatings {
           nextToken
         }
