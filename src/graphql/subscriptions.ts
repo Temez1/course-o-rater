@@ -10,6 +10,8 @@ export const onCreateCourse = /* GraphQL */ `
       code
       location
       sisuId
+      createdAt
+      updatedAt
       courseRatings {
         items {
           id
@@ -23,11 +25,10 @@ export const onCreateCourse = /* GraphQL */ `
           feedback
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `
@@ -39,6 +40,8 @@ export const onUpdateCourse = /* GraphQL */ `
       code
       location
       sisuId
+      createdAt
+      updatedAt
       courseRatings {
         items {
           id
@@ -52,11 +55,10 @@ export const onUpdateCourse = /* GraphQL */ `
           feedback
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `
@@ -68,6 +70,8 @@ export const onDeleteCourse = /* GraphQL */ `
       code
       location
       sisuId
+      createdAt
+      updatedAt
       courseRatings {
         items {
           id
@@ -81,31 +85,18 @@ export const onDeleteCourse = /* GraphQL */ `
           feedback
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `
 export const onCreateCourseRating = /* GraphQL */ `
-  subscription OnCreateCourseRating {
-    onCreateCourseRating {
+  subscription OnCreateCourseRating($owner: String) {
+    onCreateCourseRating(owner: $owner) {
       id
       courseID
-      course {
-        id
-        name
-        code
-        location
-        sisuId
-        courseRatings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       totalRating
       qualityOfLectures
       qualityOfExercises
@@ -115,26 +106,27 @@ export const onCreateCourseRating = /* GraphQL */ `
       feedback
       createdAt
       updatedAt
+      course {
+        id
+        name
+        code
+        location
+        sisuId
+        createdAt
+        updatedAt
+        courseRatings {
+          nextToken
+        }
+      }
+      owner
     }
   }
 `
 export const onUpdateCourseRating = /* GraphQL */ `
-  subscription OnUpdateCourseRating {
-    onUpdateCourseRating {
+  subscription OnUpdateCourseRating($owner: String) {
+    onUpdateCourseRating(owner: $owner) {
       id
       courseID
-      course {
-        id
-        name
-        code
-        location
-        sisuId
-        courseRatings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       totalRating
       qualityOfLectures
       qualityOfExercises
@@ -144,26 +136,27 @@ export const onUpdateCourseRating = /* GraphQL */ `
       feedback
       createdAt
       updatedAt
+      course {
+        id
+        name
+        code
+        location
+        sisuId
+        createdAt
+        updatedAt
+        courseRatings {
+          nextToken
+        }
+      }
+      owner
     }
   }
 `
 export const onDeleteCourseRating = /* GraphQL */ `
-  subscription OnDeleteCourseRating {
-    onDeleteCourseRating {
+  subscription OnDeleteCourseRating($owner: String) {
+    onDeleteCourseRating(owner: $owner) {
       id
       courseID
-      course {
-        id
-        name
-        code
-        location
-        sisuId
-        courseRatings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       totalRating
       qualityOfLectures
       qualityOfExercises
@@ -173,6 +166,19 @@ export const onDeleteCourseRating = /* GraphQL */ `
       feedback
       createdAt
       updatedAt
+      course {
+        id
+        name
+        code
+        location
+        sisuId
+        createdAt
+        updatedAt
+        courseRatings {
+          nextToken
+        }
+      }
+      owner
     }
   }
 `

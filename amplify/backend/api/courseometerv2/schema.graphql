@@ -2,7 +2,8 @@ type Course
   @model
   @key(name: "byName", fields: ["name"])
   @key(name: "byCode", fields: ["code"])
-  @key(name: "byLocation", fields: ["location"]) {
+  @key(name: "byLocation", fields: ["location"])
+  @auth(rules: [{ allow: public, operations: [read] }]) {
   id: ID!
   name: String!
   code: String!
@@ -12,7 +13,10 @@ type Course
     @connection(keyName: "byCourse", fields: ["id"])
 }
 
-type CourseRating @model @key(name: "byCourse", fields: ["courseID"]) {
+type CourseRating
+  @model
+  @key(name: "byCourse", fields: ["courseID"])
+  @auth(rules: [{ allow: public, operations: [read] }, { allow: owner }]) {
   id: ID!
   courseID: ID!
   course: Course @connection(fields: ["courseID"])

@@ -2,35 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getCourse = /* GraphQL */ `
-  query GetCourse($id: ID!) {
-    getCourse(id: $id) {
-      id
-      name
-      code
-      location
-      sisuId
-      courseRatings {
-        items {
-          id
-          courseID
-          totalRating
-          qualityOfLectures
-          qualityOfExercises
-          amountOfWork
-          support
-          happiness
-          feedback
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`
 export const listCourses = /* GraphQL */ `
   query ListCourses(
     $filter: ModelCourseFilterInput
@@ -44,13 +15,43 @@ export const listCourses = /* GraphQL */ `
         code
         location
         sisuId
+        createdAt
+        updatedAt
         courseRatings {
           nextToken
         }
-        createdAt
-        updatedAt
       }
       nextToken
+    }
+  }
+`
+export const getCourse = /* GraphQL */ `
+  query GetCourse($id: ID!) {
+    getCourse(id: $id) {
+      id
+      name
+      code
+      location
+      sisuId
+      createdAt
+      updatedAt
+      courseRatings {
+        items {
+          id
+          courseID
+          totalRating
+          qualityOfLectures
+          qualityOfExercises
+          amountOfWork
+          support
+          happiness
+          feedback
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
     }
   }
 `
@@ -59,18 +60,6 @@ export const getCourseRating = /* GraphQL */ `
     getCourseRating(id: $id) {
       id
       courseID
-      course {
-        id
-        name
-        code
-        location
-        sisuId
-        courseRatings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       totalRating
       qualityOfLectures
       qualityOfExercises
@@ -80,6 +69,19 @@ export const getCourseRating = /* GraphQL */ `
       feedback
       createdAt
       updatedAt
+      course {
+        id
+        name
+        code
+        location
+        sisuId
+        createdAt
+        updatedAt
+        courseRatings {
+          nextToken
+        }
+      }
+      owner
     }
   }
 `
@@ -93,15 +95,6 @@ export const listCourseRatings = /* GraphQL */ `
       items {
         id
         courseID
-        course {
-          id
-          name
-          code
-          location
-          sisuId
-          createdAt
-          updatedAt
-        }
         totalRating
         qualityOfLectures
         qualityOfExercises
@@ -111,6 +104,16 @@ export const listCourseRatings = /* GraphQL */ `
         feedback
         createdAt
         updatedAt
+        course {
+          id
+          name
+          code
+          location
+          sisuId
+          createdAt
+          updatedAt
+        }
+        owner
       }
       nextToken
     }

@@ -13,6 +13,8 @@ export const createCourse = /* GraphQL */ `
       code
       location
       sisuId
+      createdAt
+      updatedAt
       courseRatings {
         items {
           id
@@ -26,11 +28,10 @@ export const createCourse = /* GraphQL */ `
           feedback
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `
@@ -45,6 +46,8 @@ export const updateCourse = /* GraphQL */ `
       code
       location
       sisuId
+      createdAt
+      updatedAt
       courseRatings {
         items {
           id
@@ -58,11 +61,10 @@ export const updateCourse = /* GraphQL */ `
           feedback
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `
@@ -77,6 +79,8 @@ export const deleteCourse = /* GraphQL */ `
       code
       location
       sisuId
+      createdAt
+      updatedAt
       courseRatings {
         items {
           id
@@ -90,11 +94,10 @@ export const deleteCourse = /* GraphQL */ `
           feedback
           createdAt
           updatedAt
+          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `
@@ -106,18 +109,6 @@ export const createCourseRating = /* GraphQL */ `
     createCourseRating(input: $input, condition: $condition) {
       id
       courseID
-      course {
-        id
-        name
-        code
-        location
-        sisuId
-        courseRatings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       totalRating
       qualityOfLectures
       qualityOfExercises
@@ -127,6 +118,19 @@ export const createCourseRating = /* GraphQL */ `
       feedback
       createdAt
       updatedAt
+      course {
+        id
+        name
+        code
+        location
+        sisuId
+        createdAt
+        updatedAt
+        courseRatings {
+          nextToken
+        }
+      }
+      owner
     }
   }
 `
@@ -138,18 +142,6 @@ export const updateCourseRating = /* GraphQL */ `
     updateCourseRating(input: $input, condition: $condition) {
       id
       courseID
-      course {
-        id
-        name
-        code
-        location
-        sisuId
-        courseRatings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       totalRating
       qualityOfLectures
       qualityOfExercises
@@ -159,6 +151,19 @@ export const updateCourseRating = /* GraphQL */ `
       feedback
       createdAt
       updatedAt
+      course {
+        id
+        name
+        code
+        location
+        sisuId
+        createdAt
+        updatedAt
+        courseRatings {
+          nextToken
+        }
+      }
+      owner
     }
   }
 `
@@ -170,18 +175,6 @@ export const deleteCourseRating = /* GraphQL */ `
     deleteCourseRating(input: $input, condition: $condition) {
       id
       courseID
-      course {
-        id
-        name
-        code
-        location
-        sisuId
-        courseRatings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       totalRating
       qualityOfLectures
       qualityOfExercises
@@ -191,6 +184,19 @@ export const deleteCourseRating = /* GraphQL */ `
       feedback
       createdAt
       updatedAt
+      course {
+        id
+        name
+        code
+        location
+        sisuId
+        createdAt
+        updatedAt
+        courseRatings {
+          nextToken
+        }
+      }
+      owner
     }
   }
 `

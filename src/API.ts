@@ -66,9 +66,9 @@ export type Course = {
   code?: string
   location?: string
   sisuId?: string
-  courseRatings?: ModelCourseRatingConnection
   createdAt?: string
   updatedAt?: string
+  courseRatings?: ModelCourseRatingConnection
 }
 
 export type ModelCourseRatingConnection = {
@@ -81,7 +81,6 @@ export type CourseRating = {
   __typename: "CourseRating"
   id?: string
   courseID?: string
-  course?: Course
   totalRating?: number
   qualityOfLectures?: number
   qualityOfExercises?: number | null
@@ -91,6 +90,8 @@ export type CourseRating = {
   feedback?: string | null
   createdAt?: string
   updatedAt?: string
+  course?: Course
+  owner?: string | null
 }
 
 export type UpdateCourseInput = {
@@ -220,6 +221,8 @@ export type CreateCourseMutation = {
     code: string
     location: string
     sisuId: string
+    createdAt: string
+    updatedAt: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -235,11 +238,10 @@ export type CreateCourseMutation = {
         feedback?: string | null
         createdAt: string
         updatedAt: string
+        owner?: string | null
       } | null> | null
       nextToken?: string | null
     } | null
-    createdAt: string
-    updatedAt: string
   } | null
 }
 
@@ -256,6 +258,8 @@ export type UpdateCourseMutation = {
     code: string
     location: string
     sisuId: string
+    createdAt: string
+    updatedAt: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -271,11 +275,10 @@ export type UpdateCourseMutation = {
         feedback?: string | null
         createdAt: string
         updatedAt: string
+        owner?: string | null
       } | null> | null
       nextToken?: string | null
     } | null
-    createdAt: string
-    updatedAt: string
   } | null
 }
 
@@ -292,6 +295,8 @@ export type DeleteCourseMutation = {
     code: string
     location: string
     sisuId: string
+    createdAt: string
+    updatedAt: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -307,11 +312,10 @@ export type DeleteCourseMutation = {
         feedback?: string | null
         createdAt: string
         updatedAt: string
+        owner?: string | null
       } | null> | null
       nextToken?: string | null
     } | null
-    createdAt: string
-    updatedAt: string
   } | null
 }
 
@@ -325,20 +329,6 @@ export type CreateCourseRatingMutation = {
     __typename: "CourseRating"
     id: string
     courseID: string
-    course?: {
-      __typename: "Course"
-      id: string
-      name: string
-      code: string
-      location: string
-      sisuId: string
-      courseRatings?: {
-        __typename: "ModelCourseRatingConnection"
-        nextToken?: string | null
-      } | null
-      createdAt: string
-      updatedAt: string
-    } | null
     totalRating: number
     qualityOfLectures: number
     qualityOfExercises?: number | null
@@ -348,6 +338,21 @@ export type CreateCourseRatingMutation = {
     feedback?: string | null
     createdAt: string
     updatedAt: string
+    course?: {
+      __typename: "Course"
+      id: string
+      name: string
+      code: string
+      location: string
+      sisuId: string
+      createdAt: string
+      updatedAt: string
+      courseRatings?: {
+        __typename: "ModelCourseRatingConnection"
+        nextToken?: string | null
+      } | null
+    } | null
+    owner?: string | null
   } | null
 }
 
@@ -361,20 +366,6 @@ export type UpdateCourseRatingMutation = {
     __typename: "CourseRating"
     id: string
     courseID: string
-    course?: {
-      __typename: "Course"
-      id: string
-      name: string
-      code: string
-      location: string
-      sisuId: string
-      courseRatings?: {
-        __typename: "ModelCourseRatingConnection"
-        nextToken?: string | null
-      } | null
-      createdAt: string
-      updatedAt: string
-    } | null
     totalRating: number
     qualityOfLectures: number
     qualityOfExercises?: number | null
@@ -384,6 +375,21 @@ export type UpdateCourseRatingMutation = {
     feedback?: string | null
     createdAt: string
     updatedAt: string
+    course?: {
+      __typename: "Course"
+      id: string
+      name: string
+      code: string
+      location: string
+      sisuId: string
+      createdAt: string
+      updatedAt: string
+      courseRatings?: {
+        __typename: "ModelCourseRatingConnection"
+        nextToken?: string | null
+      } | null
+    } | null
+    owner?: string | null
   } | null
 }
 
@@ -397,20 +403,6 @@ export type DeleteCourseRatingMutation = {
     __typename: "CourseRating"
     id: string
     courseID: string
-    course?: {
-      __typename: "Course"
-      id: string
-      name: string
-      code: string
-      location: string
-      sisuId: string
-      courseRatings?: {
-        __typename: "ModelCourseRatingConnection"
-        nextToken?: string | null
-      } | null
-      createdAt: string
-      updatedAt: string
-    } | null
     totalRating: number
     qualityOfLectures: number
     qualityOfExercises?: number | null
@@ -420,41 +412,21 @@ export type DeleteCourseRatingMutation = {
     feedback?: string | null
     createdAt: string
     updatedAt: string
-  } | null
-}
-
-export type GetCourseQueryVariables = {
-  id?: string
-}
-
-export type GetCourseQuery = {
-  getCourse?: {
-    __typename: "Course"
-    id: string
-    name: string
-    code: string
-    location: string
-    sisuId: string
-    courseRatings?: {
-      __typename: "ModelCourseRatingConnection"
-      items?: Array<{
-        __typename: "CourseRating"
-        id: string
-        courseID: string
-        totalRating: number
-        qualityOfLectures: number
-        qualityOfExercises?: number | null
-        amountOfWork: number
-        support: number
-        happiness?: number | null
-        feedback?: string | null
-        createdAt: string
-        updatedAt: string
-      } | null> | null
-      nextToken?: string | null
+    course?: {
+      __typename: "Course"
+      id: string
+      name: string
+      code: string
+      location: string
+      sisuId: string
+      createdAt: string
+      updatedAt: string
+      courseRatings?: {
+        __typename: "ModelCourseRatingConnection"
+        nextToken?: string | null
+      } | null
     } | null
-    createdAt: string
-    updatedAt: string
+    owner?: string | null
   } | null
 }
 
@@ -474,14 +446,50 @@ export type ListCoursesQuery = {
       code: string
       location: string
       sisuId: string
+      createdAt: string
+      updatedAt: string
       courseRatings?: {
         __typename: "ModelCourseRatingConnection"
         nextToken?: string | null
       } | null
-      createdAt: string
-      updatedAt: string
     } | null> | null
     nextToken?: string | null
+  } | null
+}
+
+export type GetCourseQueryVariables = {
+  id?: string
+}
+
+export type GetCourseQuery = {
+  getCourse?: {
+    __typename: "Course"
+    id: string
+    name: string
+    code: string
+    location: string
+    sisuId: string
+    createdAt: string
+    updatedAt: string
+    courseRatings?: {
+      __typename: "ModelCourseRatingConnection"
+      items?: Array<{
+        __typename: "CourseRating"
+        id: string
+        courseID: string
+        totalRating: number
+        qualityOfLectures: number
+        qualityOfExercises?: number | null
+        amountOfWork: number
+        support: number
+        happiness?: number | null
+        feedback?: string | null
+        createdAt: string
+        updatedAt: string
+        owner?: string | null
+      } | null> | null
+      nextToken?: string | null
+    } | null
   } | null
 }
 
@@ -494,20 +502,6 @@ export type GetCourseRatingQuery = {
     __typename: "CourseRating"
     id: string
     courseID: string
-    course?: {
-      __typename: "Course"
-      id: string
-      name: string
-      code: string
-      location: string
-      sisuId: string
-      courseRatings?: {
-        __typename: "ModelCourseRatingConnection"
-        nextToken?: string | null
-      } | null
-      createdAt: string
-      updatedAt: string
-    } | null
     totalRating: number
     qualityOfLectures: number
     qualityOfExercises?: number | null
@@ -517,6 +511,21 @@ export type GetCourseRatingQuery = {
     feedback?: string | null
     createdAt: string
     updatedAt: string
+    course?: {
+      __typename: "Course"
+      id: string
+      name: string
+      code: string
+      location: string
+      sisuId: string
+      createdAt: string
+      updatedAt: string
+      courseRatings?: {
+        __typename: "ModelCourseRatingConnection"
+        nextToken?: string | null
+      } | null
+    } | null
+    owner?: string | null
   } | null
 }
 
@@ -533,6 +542,15 @@ export type ListCourseRatingsQuery = {
       __typename: "CourseRating"
       id: string
       courseID: string
+      totalRating: number
+      qualityOfLectures: number
+      qualityOfExercises?: number | null
+      amountOfWork: number
+      support: number
+      happiness?: number | null
+      feedback?: string | null
+      createdAt: string
+      updatedAt: string
       course?: {
         __typename: "Course"
         id: string
@@ -543,15 +561,7 @@ export type ListCourseRatingsQuery = {
         createdAt: string
         updatedAt: string
       } | null
-      totalRating: number
-      qualityOfLectures: number
-      qualityOfExercises?: number | null
-      amountOfWork: number
-      support: number
-      happiness?: number | null
-      feedback?: string | null
-      createdAt: string
-      updatedAt: string
+      owner?: string | null
     } | null> | null
     nextToken?: string | null
   } | null
@@ -565,6 +575,8 @@ export type OnCreateCourseSubscription = {
     code: string
     location: string
     sisuId: string
+    createdAt: string
+    updatedAt: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -580,11 +592,10 @@ export type OnCreateCourseSubscription = {
         feedback?: string | null
         createdAt: string
         updatedAt: string
+        owner?: string | null
       } | null> | null
       nextToken?: string | null
     } | null
-    createdAt: string
-    updatedAt: string
   } | null
 }
 
@@ -596,6 +607,8 @@ export type OnUpdateCourseSubscription = {
     code: string
     location: string
     sisuId: string
+    createdAt: string
+    updatedAt: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -611,11 +624,10 @@ export type OnUpdateCourseSubscription = {
         feedback?: string | null
         createdAt: string
         updatedAt: string
+        owner?: string | null
       } | null> | null
       nextToken?: string | null
     } | null
-    createdAt: string
-    updatedAt: string
   } | null
 }
 
@@ -627,6 +639,8 @@ export type OnDeleteCourseSubscription = {
     code: string
     location: string
     sisuId: string
+    createdAt: string
+    updatedAt: string
     courseRatings?: {
       __typename: "ModelCourseRatingConnection"
       items?: Array<{
@@ -642,12 +656,15 @@ export type OnDeleteCourseSubscription = {
         feedback?: string | null
         createdAt: string
         updatedAt: string
+        owner?: string | null
       } | null> | null
       nextToken?: string | null
     } | null
-    createdAt: string
-    updatedAt: string
   } | null
+}
+
+export type OnCreateCourseRatingSubscriptionVariables = {
+  owner?: string | null
 }
 
 export type OnCreateCourseRatingSubscription = {
@@ -655,20 +672,6 @@ export type OnCreateCourseRatingSubscription = {
     __typename: "CourseRating"
     id: string
     courseID: string
-    course?: {
-      __typename: "Course"
-      id: string
-      name: string
-      code: string
-      location: string
-      sisuId: string
-      courseRatings?: {
-        __typename: "ModelCourseRatingConnection"
-        nextToken?: string | null
-      } | null
-      createdAt: string
-      updatedAt: string
-    } | null
     totalRating: number
     qualityOfLectures: number
     qualityOfExercises?: number | null
@@ -678,7 +681,26 @@ export type OnCreateCourseRatingSubscription = {
     feedback?: string | null
     createdAt: string
     updatedAt: string
+    course?: {
+      __typename: "Course"
+      id: string
+      name: string
+      code: string
+      location: string
+      sisuId: string
+      createdAt: string
+      updatedAt: string
+      courseRatings?: {
+        __typename: "ModelCourseRatingConnection"
+        nextToken?: string | null
+      } | null
+    } | null
+    owner?: string | null
   } | null
+}
+
+export type OnUpdateCourseRatingSubscriptionVariables = {
+  owner?: string | null
 }
 
 export type OnUpdateCourseRatingSubscription = {
@@ -686,20 +708,6 @@ export type OnUpdateCourseRatingSubscription = {
     __typename: "CourseRating"
     id: string
     courseID: string
-    course?: {
-      __typename: "Course"
-      id: string
-      name: string
-      code: string
-      location: string
-      sisuId: string
-      courseRatings?: {
-        __typename: "ModelCourseRatingConnection"
-        nextToken?: string | null
-      } | null
-      createdAt: string
-      updatedAt: string
-    } | null
     totalRating: number
     qualityOfLectures: number
     qualityOfExercises?: number | null
@@ -709,7 +717,26 @@ export type OnUpdateCourseRatingSubscription = {
     feedback?: string | null
     createdAt: string
     updatedAt: string
+    course?: {
+      __typename: "Course"
+      id: string
+      name: string
+      code: string
+      location: string
+      sisuId: string
+      createdAt: string
+      updatedAt: string
+      courseRatings?: {
+        __typename: "ModelCourseRatingConnection"
+        nextToken?: string | null
+      } | null
+    } | null
+    owner?: string | null
   } | null
+}
+
+export type OnDeleteCourseRatingSubscriptionVariables = {
+  owner?: string | null
 }
 
 export type OnDeleteCourseRatingSubscription = {
@@ -717,20 +744,6 @@ export type OnDeleteCourseRatingSubscription = {
     __typename: "CourseRating"
     id: string
     courseID: string
-    course?: {
-      __typename: "Course"
-      id: string
-      name: string
-      code: string
-      location: string
-      sisuId: string
-      courseRatings?: {
-        __typename: "ModelCourseRatingConnection"
-        nextToken?: string | null
-      } | null
-      createdAt: string
-      updatedAt: string
-    } | null
     totalRating: number
     qualityOfLectures: number
     qualityOfExercises?: number | null
@@ -740,5 +753,20 @@ export type OnDeleteCourseRatingSubscription = {
     feedback?: string | null
     createdAt: string
     updatedAt: string
+    course?: {
+      __typename: "Course"
+      id: string
+      name: string
+      code: string
+      location: string
+      sisuId: string
+      createdAt: string
+      updatedAt: string
+      courseRatings?: {
+        __typename: "ModelCourseRatingConnection"
+        nextToken?: string | null
+      } | null
+    } | null
+    owner?: string | null
   } | null
 }

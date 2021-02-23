@@ -1,5 +1,11 @@
 {
   "AppSyncApiName": "courseometerv2",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcourseometerv26f43e74a",
+      "Outputs.UserPoolId"
+    ]
+  }
 }
