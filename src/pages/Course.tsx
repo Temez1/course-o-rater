@@ -8,7 +8,7 @@ import Select from "@material-ui/core/Select"
 import InputLabel from "@material-ui/core/InputLabel"
 import FormControl from "@material-ui/core/FormControl"
 import MenuItem from "@material-ui/core/MenuItem"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Button from "@material-ui/core/Button"
 import CourseDetailedRatings from "../components/CourseDetailedRatings"
 
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default (): JSX.Element => {
   const classes = useStyles()
+  const { id } = useParams()
   const [sortBy, setSortBy] = React.useState("newest")
 
   const handleSortByChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -76,7 +77,7 @@ export default (): JSX.Element => {
         <Grid item>
           <Button
             component={Link}
-            to="/rate-course/courseCode"
+            to={`/rate-course/${id}`}
             variant="contained"
             color="primary"
           >
