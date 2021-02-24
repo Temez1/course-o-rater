@@ -1,5 +1,3 @@
-// Expecting more constants to be added over time
-// eslint-disable-next-line import/prefer-default-export
 export const amountOfWork = {
   "-2": "Way too little",
   "-1": "Too little",
@@ -7,3 +5,5 @@ export const amountOfWork = {
   "1": "Too much",
   "2": "Way too much",
 }
+
+export const CHARACTER_LIMIT = 2400

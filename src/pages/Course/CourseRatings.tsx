@@ -28,10 +28,6 @@ export default (): JSX.Element => {
 
   const [sortBy, setSortBy] = React.useState("newest")
 
-  const handleSortByChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSortBy(event.target.value as string)
-  }
-
   return (
     <>
       <Grid
@@ -62,7 +58,9 @@ export default (): JSX.Element => {
               id="sort-by-select"
               labelId="sort-by-select-label"
               value={sortBy}
-              onChange={handleSortByChange}
+              onChange={(event: React.ChangeEvent<{ value: unknown }>) =>
+                setSortBy(event.target.value as string)
+              }
             >
               <MenuItem value="newest">Newest</MenuItem>
               <MenuItem value="oldest">Oldest</MenuItem>
