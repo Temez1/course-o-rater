@@ -1,6 +1,6 @@
+import * as React from "react"
 import { Button, Grid, Typography } from "@material-ui/core"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import * as React from "react"
 import { Link } from "react-router-dom"
 
 const useStyles = makeStyles((theme: Theme) =>
