@@ -1,10 +1,9 @@
 import React from "react"
-import List from "@material-ui/core/List"
-import { Grid, TextField } from "@material-ui/core"
+import { Grid, TextField, List } from "@material-ui/core"
 import { API } from "aws-amplify"
-import CourseListItemLink from "../components/CourseListItemLink"
-import { listCourses } from "../graphql/queries"
-import { ListCoursesQuery } from "../API"
+import CourseListItem from "./CourseListItem"
+import { listCourses } from "../../graphql/queries"
+import { ListCoursesQuery } from "../../API"
 
 export default (): JSX.Element => {
   const [courses, setCourses] = React.useState<ListCoursesQuery | undefined>(
@@ -39,12 +38,11 @@ export default (): JSX.Element => {
         {courses?.listCourses?.items?.map(
           (course) =>
             course && (
-              <CourseListItemLink
+              <CourseListItem
                 key={course.id}
                 courseName={course.name}
                 courseCode={course.code}
                 to={`course/${course.id}`}
-                findCourseToRate={false}
               />
             )
         )}
