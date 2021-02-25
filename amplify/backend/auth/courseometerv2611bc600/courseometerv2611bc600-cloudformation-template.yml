@@ -9,6 +9,18 @@ Parameters:
     Type: String
 
   
+  
+  
+  functioncourseometerv2611bc600PostConfirmationArn:
+    Type: String
+    Default: functioncourseometerv2611bc600PostConfirmationArn
+  
+  functioncourseometerv2611bc600PostConfirmationName:
+    Type: String
+    Default: functioncourseometerv2611bc600PostConfirmationName
+  
+  
+  
 
     
   identityPoolName:
@@ -113,6 +125,10 @@ Parameters:
     Type: String
   
             
+  triggers:
+    Type: String
+  
+            
         
   userPoolGroupList:
     Type: CommaDelimitedList
@@ -126,6 +142,14 @@ Parameters:
   usernameCaseSensitive:
     Type: String
             
+      
+  parentStack:
+    Type: String
+        
+        
+  permissions:
+    Type: CommaDelimitedList
+      
         
   dependsOn:
     Type: CommaDelimitedList
@@ -144,7 +168,7 @@ Resources:
   # Created to allow the UserPool SMS Config to publish via the Simple Notification Service during MFA Process
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, 'course6f43e74a_sns-role', !Join ['',[ 'sns', '6f43e74a', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, 'course611bc600_sns-role', !Join ['',[ 'sns', '611bc600', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -156,10 +180,10 @@ Resources:
               - "sts:AssumeRole"
             Condition:
               StringEquals:
-                sts:ExternalId: course6f43e74a_role_external_id
+                sts:ExternalId: course611bc600_role_external_id
       Policies:
         -
-          PolicyName: course6f43e74a-sns-policy
+          PolicyName: course611bc600-sns-policy
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -190,6 +214,19 @@ Resources:
         
       
       
+      LambdaConfig:
+        
+        
+        
+        
+        
+          PostConfirmation: !Ref functioncourseometerv2611bc600PostConfirmationArn
+        
+        
+        
+        
+        
+      
       
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
@@ -209,15 +246,68 @@ Resources:
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsConfiguration:
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: course6f43e74a_role_external_id
+        ExternalId: course611bc600_role_external_id
     
+  
+  
+  
+  
+  
+  
+  UserPoolPostConfirmationLambdaInvokePermission:
+    Type: "AWS::Lambda::Permission"
+    DependsOn: UserPool
+    Properties:
+      Action: "lambda:invokeFunction"
+      Principal: "cognito-idp.amazonaws.com"
+      FunctionName: !Ref functioncourseometerv2611bc600PostConfirmationName
+      SourceArn: !GetAtt UserPool.Arn
+  
+  
+  
+  
+  
+  # Updating lambda role with permissions to Cognito
+  
+  
+  courseometerv2611bc600PostConfirmationAddToGroupCognito:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: courseometerv2611bc600PostConfirmationAddToGroupCognito
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+            
+              - cognito-idp:AdminAddUserToGroup
+            
+              - cognito-idp:GetGroup
+            
+              - cognito-idp:CreateGroup
+            
+            
+            
+            Resource: !GetAtt
+            
+              - UserPool
+            
+              - Arn
+            
+            
+            
+
+      Roles:
+        - !Join ['',["courseometerv2611bc600PostConfirmation", '-', !Ref env]]
+  
+  
   
   UserPoolClientWeb:
   # Created provide application access to user pool
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: course6f43e74a_app_clientWeb
+      ClientName: course611bc600_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -227,7 +317,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: course6f43e74a_app_client
+      ClientName: course611bc600_app_client
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -238,7 +328,7 @@ Resources:
   # Created to execute Lambda which gets userpool app client config values
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '6f43e74a', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '611bc600', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -292,7 +382,7 @@ Resources:
   # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: course6f43e74a_userpoolclient_lambda_iam_policy
+      PolicyName: course611bc600_userpoolclient_lambda_iam_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -309,7 +399,7 @@ Resources:
   # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: course6f43e74a_userpoolclient_lambda_log_policy
+      PolicyName: course611bc600_userpoolclient_lambda_log_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -349,7 +439,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties:
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'courseometerv26f43e74a_identitypool_6f43e74a', !Join ['',['courseometerv26f43e74a_identitypool_6f43e74a', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'courseometerv2611bc600_identitypool_611bc600', !Join ['',['courseometerv2611bc600_identitypool_611bc600', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient

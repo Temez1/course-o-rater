@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "courseometerv26f43e74a_identitypool_6f43e74a",
+    "identityPoolName": "courseometerv2611bc600_identitypool_611bc600",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "course6f43e74a",
-    "userPoolName": "courseometerv26f43e74a_userpool_6f43e74a",
+    "resourceNameTruncated": "course611bc600",
+    "userPoolName": "courseometerv2611bc600_userpool_611bc600",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "course6f43e74a_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "course611bc600_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "6f43e74a",
-    "resourceName": "courseometerv26f43e74a",
+    "sharedId": "611bc600",
+    "resourceName": "courseometerv2611bc600",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -46,8 +46,25 @@
         ]
     },
     "useDefault": "default",
+    "triggers": "{\n  \"PostConfirmation\": [\n    \"add-to-group\"\n  ]\n}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "dependsOn": []
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [
+        "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
+    ],
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "courseometerv2611bc600PostConfirmation",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ]
 }

@@ -25,8 +25,15 @@
       "AmplifyAppId": "d2fvox7whj9my7"
     },
     "categories": {
+      "function": {
+        "courseometerv2611bc600PostConfirmation": {
+          "GROUP": "Admin",
+          "deploymentBucketName": "amplify-courseometerv2-teemudev-150059-deployment",
+          "s3Key": "amplify-builds/courseometerv2611bc600PostConfirmation-6e624366795575393447-build.zip"
+        }
+      },
       "auth": {
-        "courseometerv26f43e74a": {}
+        "courseometerv2611bc600": {}
       }
     }
   }
