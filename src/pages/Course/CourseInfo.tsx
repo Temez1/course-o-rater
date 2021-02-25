@@ -2,7 +2,7 @@ import React from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import Rating from "@material-ui/lab/Rating"
-import { amountOfWork } from "../../constants"
+import { AMOUNT_OF_WORK } from "../../constants"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,7 +51,7 @@ export default (): JSX.Element => {
         <Typography>Amount of work</Typography>
       </Grid>
       <Grid item xs={6}>
-        <Typography> {amountOfWork[0]} </Typography>
+        <Typography> {AMOUNT_OF_WORK[0]} </Typography>
       </Grid>
 
       <Grid item xs={6}>

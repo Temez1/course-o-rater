@@ -1,6 +1,8 @@
 import React from "react"
 import { Grid, TextField, List } from "@material-ui/core"
 import { API } from "aws-amplify"
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api-graphql/lib/types"
 import CourseListItem from "./CourseListItem"
 import { listCourses } from "../../graphql/queries"
 import { ListCoursesQuery } from "../../API"
@@ -14,6 +16,7 @@ export default (): JSX.Element => {
     async function fetchCourses() {
       const response = (await API.graphql({
         query: listCourses,
+        authMode: GRAPHQL_AUTH_MODE.API_KEY,
       })) as { data: ListCoursesQuery }
       console.log(response.data.listCourses?.items)
       setCourses(response.data)

@@ -1,7 +1,7 @@
 import React from "react"
 import { Grid, TextField } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
-import { CHARACTER_LIMIT } from "../../constants"
+import { FEEDBACK_CHARACTER_LIMIT } from "../../constants"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,9 +29,9 @@ export default (props: FeedbackProps): JSX.Element => {
           placeholder="Don’t find fault, find a remedy; 
 anybody can complain.
 - Henry Ford"
-          error={feedback.length === CHARACTER_LIMIT}
+          error={feedback.length === FEEDBACK_CHARACTER_LIMIT}
           helperText={
-            feedback.length === CHARACTER_LIMIT
+            feedback.length === FEEDBACK_CHARACTER_LIMIT
               ? "Hold your horses! Please contact the teacher directly."
               : ""
           }
@@ -42,7 +42,7 @@ anybody can complain.
           onChange={(event: React.ChangeEvent<{ value: unknown }>) => {
             setFeedback(event.target.value as string)
           }}
-          inputProps={{ maxLength: CHARACTER_LIMIT }}
+          inputProps={{ maxLength: FEEDBACK_CHARACTER_LIMIT }}
           InputLabelProps={{ shrink: true }}
         />
       </Grid>

@@ -2,7 +2,7 @@ import React from "react"
 import { Slider, Typography, Grid } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import Rating from "@material-ui/lab/Rating"
-import { amountOfWork } from "../../constants"
+import { AMOUNT_OF_WORK } from "../../constants"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -68,7 +68,7 @@ export default (): JSX.Element => {
             step={1}
             min={-2}
             max={2}
-            marks={Object.entries(amountOfWork).map(
+            marks={Object.entries(AMOUNT_OF_WORK).map(
               ([rating, description]) => ({
                 value: Number(rating),
                 label: description,

@@ -1,4 +1,4 @@
-export const amountOfWork = {
+export const AMOUNT_OF_WORK = {
   "-2": "Way too little",
   "-1": "Too little",
   "0": "Just right 👌",
@@ -6,4 +6,4 @@ export const amountOfWork = {
   "2": "Way too much",
 }
 
-export const CHARACTER_LIMIT = 2400
+export const FEEDBACK_CHARACTER_LIMIT = 2400
