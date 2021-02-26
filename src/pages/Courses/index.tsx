@@ -45,7 +45,7 @@ export default (): JSX.Element => {
                 key={course.id}
                 courseName={course.name}
                 courseCode={course.code}
-                to={`course/${course.code}`}
+                to={`course/${course.id}`}
               />
             )
         )}
