@@ -9,7 +9,7 @@ import Title from "./CourseTitle"
 import CourseInfo from "./CourseInfo"
 import CourseRatings from "./CourseRatings"
 import { getCourse } from "../../graphql/queries"
-import { GetCourseQuery } from "../../API"
+import { Course, GetCourseQuery } from "../../API"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default (): JSX.Element => {
   const classes = useStyles()
-  const { id } = useParams()
+  const { courseId } = useParams()
 
   const [course, setCourse] = React.useState<GetCourseQuery | undefined>(
     undefined
@@ -31,7 +31,7 @@ export default (): JSX.Element => {
     async function fetchCourse() {
       const response = (await API.graphql({
         query: getCourse,
-        variables: { id },
+        variables: { id: courseId },
         authMode: GRAPHQL_AUTH_MODE.API_KEY,
       })) as { data: GetCourseQuery }
       console.log(response.data.getCourse)
@@ -39,11 +39,11 @@ export default (): JSX.Element => {
     }
 
     fetchCourse()
-  }, [id])
+  }, [courseId])
 
-  return (
+  return course?.getCourse ? (
     <>
-      <Title />
+      <Title course={course.getCourse as Course} />
 
       <CourseInfo />
 
@@ -55,5 +55,7 @@ export default (): JSX.Element => {
 
       <CourseRatings />
     </>
+  ) : (
+    <> </>
   )
 }

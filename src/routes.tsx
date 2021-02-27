@@ -24,11 +24,11 @@ const routes = (
         element: <FindCourseToRate />,
       },
       {
-        path: "/course/:id",
+        path: "/course/:courseId",
         element: <Course />,
       },
       {
-        path: "/rate-course/:id",
+        path: "/rate-course/:courseId",
         element: <RateCourse />,
       },
       {

@@ -5,7 +5,7 @@ import { API } from "aws-amplify"
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api-graphql/lib/types"
 import CourseListItem from "./CourseListItem"
 import { listCourses } from "../../graphql/queries"
-import { ListCoursesQuery } from "../../API"
+import { Course, ListCoursesQuery } from "../../API"
 
 export default (): JSX.Element => {
   const [courses, setCourses] = React.useState<ListCoursesQuery | undefined>(
@@ -43,8 +43,7 @@ export default (): JSX.Element => {
             course && (
               <CourseListItem
                 key={course.id}
-                courseName={course.name}
-                courseCode={course.code}
+                course={course as Course}
                 to={`course/${course.id}`}
               />
             )

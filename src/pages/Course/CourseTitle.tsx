@@ -2,6 +2,7 @@ import React from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import Rating from "@material-ui/lab/Rating"
+import { Course } from "../../API"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -12,15 +13,20 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default (): JSX.Element => {
+export interface CourseTitleProps {
+  course: Course
+}
+
+export default (props: CourseTitleProps): JSX.Element => {
+  const { course } = props
   const classes = useStyles()
 
   return (
     <Grid container spacing={2} justify="space-between" alignItems="center">
       <Grid item>
-        <Typography display="inline"> Course name</Typography>
+        <Typography display="inline"> {course.name} </Typography>
         <Typography variant="subtitle2" className={classes.courseCode}>
-          Course code
+          {course.code}
         </Typography>
       </Grid>
       <Grid item>
