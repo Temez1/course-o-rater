@@ -1,13 +1,5 @@
 import React from "react"
-import {
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from "@material-ui/core"
+import { Button, Grid, Typography } from "@material-ui/core"
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
 import { Link } from "react-router-dom"
 import Rating from "./Rating"
@@ -20,27 +12,22 @@ const useStyles = makeStyles((theme: Theme) =>
     ratingsContainer: {
       marginBottom: theme.spacing(2),
     },
+    rateItem: {
+      paddingLeft: 100,
+    },
   })
 )
 
 export default (): JSX.Element => {
   const classes = useStyles()
-
-  const [sortBy, setSortBy] = React.useState("newest")
-
   return (
     <>
-      <Grid
-        container
-        justify="space-between"
-        alignItems="center"
-        className={classes.ratingsContainer}
-      >
+      <Grid container alignItems="center" className={classes.ratingsContainer}>
         <Grid item>
           <Typography display="inline"> Ratings </Typography>
         </Grid>
 
-        <Grid item>
+        <Grid item className={classes.rateItem}>
           <Button
             component={Link}
             to="/rate-course/CourseIdOrCode"
@@ -49,25 +36,6 @@ export default (): JSX.Element => {
           >
             Rate
           </Button>
-        </Grid>
-
-        <Grid item>
-          <FormControl variant="outlined" className={classes.sortBySelect}>
-            <InputLabel id="sort-by-select-label">Sort by</InputLabel>
-            <Select
-              id="sort-by-select"
-              labelId="sort-by-select-label"
-              value={sortBy}
-              onChange={(event: React.ChangeEvent<{ value: unknown }>) =>
-                setSortBy(event.target.value as string)
-              }
-            >
-              <MenuItem value="newest">Newest</MenuItem>
-              <MenuItem value="oldest">Oldest</MenuItem>
-              <MenuItem value="best">Best</MenuItem>
-              <MenuItem value="worst">Worst</MenuItem>
-            </Select>
-          </FormControl>
         </Grid>
       </Grid>
 

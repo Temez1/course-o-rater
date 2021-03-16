@@ -6,15 +6,13 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
-import { Course } from "../../API"
 
 interface CourseListItemProps {
-  course: Course
   to: string
 }
 
 export default (props: CourseListItemProps): JSX.Element => {
-  const { course, to } = props
+  const { to } = props
 
   const renderLink = React.useMemo(
     () =>
@@ -28,8 +26,8 @@ export default (props: CourseListItemProps): JSX.Element => {
   return (
     <li>
       <ListItem button component={renderLink}>
-        <ListItemText primary={course.name} />
-        <ListItemText primary={course.code} />
+        <ListItemText primary="Course name" />
+        <ListItemText primary="Course code" />
         <Rating readOnly precision={0.5} defaultValue={3.3} />
       </ListItem>
     </li>

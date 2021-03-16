@@ -6,13 +6,11 @@ import {
 } from "react-router-dom"
 
 interface CourseListItemProps {
-  courseName: string
-  courseCode: string
   to: string
 }
 
 export default (props: CourseListItemProps): JSX.Element => {
-  const { courseName, courseCode, to } = props
+  const { to } = props
 
   const renderLink = React.useMemo(
     () =>
@@ -26,8 +24,8 @@ export default (props: CourseListItemProps): JSX.Element => {
   return (
     <li>
       <ListItem button component={renderLink}>
-        <ListItemText primary={courseName} />
-        <ListItemText primary={courseCode} />
+        <ListItemText primary="Course code" />
+        <ListItemText primary="Course name" />
       </ListItem>
     </li>
   )
