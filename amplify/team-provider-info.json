@@ -11,5 +11,30 @@
       "StackId": "arn:aws:cloudformation:eu-central-1:933636241918:stack/amplify-courseometerv2-dev-155506/98ac20e0-6ba7-11eb-91d1-062e98112134",
       "AmplifyAppId": "d2fvox7whj9my7"
     }
+  },
+  "teemudev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-courseometerv2-teemudev-150059-authRole",
+      "UnauthRoleArn": "arn:aws:iam::933636241918:role/amplify-courseometerv2-teemudev-150059-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::933636241918:role/amplify-courseometerv2-teemudev-150059-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-courseometerv2-teemudev-150059-deployment",
+      "UnauthRoleName": "amplify-courseometerv2-teemudev-150059-unauthRole",
+      "StackName": "amplify-courseometerv2-teemudev-150059",
+      "StackId": "arn:aws:cloudformation:eu-central-1:933636241918:stack/amplify-courseometerv2-teemudev-150059/2cd950b0-75d7-11eb-80af-0a49bc9196b2",
+      "AmplifyAppId": "d2fvox7whj9my7"
+    },
+    "categories": {
+      "function": {
+        "courseometerv2611bc600PostConfirmation": {
+          "GROUP": "Admin",
+          "deploymentBucketName": "amplify-courseometerv2-teemudev-150059-deployment",
+          "s3Key": "amplify-builds/courseometerv2611bc600PostConfirmation-6e624366795575393447-build.zip"
+        }
+      },
+      "auth": {
+        "courseometerv2611bc600": {}
+      }
+    }
   }
 }

@@ -21,6 +21,7 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
+import { AmplifySignOut } from "@aws-amplify/ui-react"
 import AppBar from "./AppBar"
 
 const drawerWidth = 240
@@ -118,6 +119,9 @@ export default ({
               inputProps={{ "aria-labelledby": "switch-list-label-wifi" }}
             />
           </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem>
+          <AmplifySignOut />
         </ListItem>
       </List>
     </div>

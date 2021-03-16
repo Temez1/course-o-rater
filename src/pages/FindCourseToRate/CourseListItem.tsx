@@ -1,21 +1,18 @@
 import React from "react"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemText from "@material-ui/core/ListItemText"
-import Rating from "@material-ui/lab/Rating"
+import { ListItem, ListItemText } from "@material-ui/core"
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
 
-type ListItemLinkProps = {
+interface CourseListItemProps {
   courseName: string
   courseCode: string
   to: string
-  findCourseToRate: boolean
 }
 
-export default (props: ListItemLinkProps): JSX.Element => {
-  const { courseName, courseCode, to, findCourseToRate } = props
+export default (props: CourseListItemProps): JSX.Element => {
+  const { courseName, courseCode, to } = props
 
   const renderLink = React.useMemo(
     () =>
@@ -31,9 +28,6 @@ export default (props: ListItemLinkProps): JSX.Element => {
       <ListItem button component={renderLink}>
         <ListItemText primary={courseName} />
         <ListItemText primary={courseCode} />
-        {findCourseToRate ? null : (
-          <Rating readOnly precision={0.5} defaultValue={3.3} />
-        )}
       </ListItem>
     </li>
   )
