@@ -1,8 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter } from "react-router-dom"
-import firebase from "firebase/app"
-import "firebase/analytics"
+import { FirebaseAppProvider } from "reactfire"
 import App from "./App"
 
 const firebaseConfig = {
@@ -15,14 +14,13 @@ const firebaseConfig = {
   measurementId: "G-7QTMH3BT7Z",
 }
 
-firebase.initializeApp(firebaseConfig)
-firebase.analytics()
-
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>{" "}
+    </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )
