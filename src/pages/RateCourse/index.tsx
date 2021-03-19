@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { Grid, Button } from "@material-ui/core"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import Rating from "@material-ui/lab/Rating"
 import { Link } from "react-router-dom"
 
 import Title from "./Title"
-import DetailedRatings from "./DetailedRatings"
 import Feedback from "./Feedback"
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,15 +29,16 @@ const useStyles = makeStyles((theme: Theme) =>
 export default (): JSX.Element => {
   const classes = useStyles()
 
-  const [feedback, setFeedback] = React.useState("")
+  const [feedback, setFeedback] = useState("")
+  const [totalRating, setTotalRating] = useState<number | null>(null)
+
+  console.log(totalRating)
 
   return (
     <>
       <Title />
 
       <form>
-        <DetailedRatings />
-
         <Feedback feedback={feedback} setFeedback={setFeedback} />
 
         <Grid
@@ -48,7 +48,14 @@ export default (): JSX.Element => {
           justify="center"
         >
           <Grid item className={classes.totalRateItem}>
-            <Rating readOnly precision={0.1} defaultValue={3.3} />
+            <Rating
+              name="total-rating"
+              precision={0.5}
+              value={totalRating}
+              onChange={(e, value) => {
+                return value ? setTotalRating(value) : setTotalRating(0)
+              }}
+            />
           </Grid>
           <Grid item xs={12} className={classes.rateButtonItem}>
             <Button
