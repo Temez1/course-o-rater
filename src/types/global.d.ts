@@ -17,14 +17,14 @@ declare global {
     ratings: CourseRatings
   }
 
+  type Courses = Array<Course> | null
+
   type CourseQuery = {
     name: string
     description: string
     code: string
     ratings: CourseRatings
   }
-
-  type Courses = Array<Course> | null
 }
 
 export {}
