@@ -1,12 +1,11 @@
 import React from "react"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
-import Rating from "@material-ui/lab/Rating"
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
-import { Typography } from "@material-ui/core"
+import DisplayCourseTotalRating from "../../components/DisplayCourseTotalRating"
 
 export interface CourseListItemProps {
   course: Course
@@ -30,11 +29,7 @@ export default (props: CourseListItemProps): JSX.Element => {
       <ListItem button component={renderLink}>
         <ListItemText primary={course.name} />
         <ListItemText primary={course.code} />
-        {course.totalRating ? (
-          <Rating readOnly precision={0.5} defaultValue={course.totalRating} />
-        ) : (
-          <Typography>No ratings yet!</Typography>
-        )}
+        <DisplayCourseTotalRating totalRating={course.totalRating} />
       </ListItem>
     </li>
   )

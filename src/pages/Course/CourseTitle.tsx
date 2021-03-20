@@ -1,7 +1,7 @@
 import React from "react"
 import { Grid, Typography } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
-import Rating from "@material-ui/lab/Rating"
+import DisplayCourseTotalRating from "../../components/DisplayCourseTotalRating"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +29,7 @@ export default (props: TitleProps): JSX.Element => {
         </Typography>
       </Grid>
       <Grid item>
-        <Rating readOnly precision={0.5} defaultValue={3.3} />
+        <DisplayCourseTotalRating totalRating={course.totalRating} />
       </Grid>
     </Grid>
   )
