@@ -15,7 +15,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default (): JSX.Element => {
+export interface CourseRatingProps {
+  courseRating: CourseRating
+}
+
+export default (props: CourseRatingProps): JSX.Element => {
+  const { courseRating } = props
   const classes = useStyles()
 
   return (

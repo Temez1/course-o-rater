@@ -51,7 +51,7 @@ export default (props: CoursePageProps): JSX.Element => {
         </Grid>
       </Grid>
 
-      <CourseRatings />
+      <CourseRatings course={course} />
     </>
   )
 }

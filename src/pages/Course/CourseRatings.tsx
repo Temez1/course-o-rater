@@ -18,7 +18,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default (): JSX.Element => {
+export interface CourseRatingsProps {
+  course: Course
+}
+
+export default (props: CourseRatingsProps): JSX.Element => {
+  const { course } = props
   const classes = useStyles()
   return (
     <>
@@ -30,7 +35,7 @@ export default (): JSX.Element => {
         <Grid item className={classes.rateItem}>
           <Button
             component={Link}
-            to="/rate-course/CourseIdOrCode"
+            to={`/rate-course/${course.id}`}
             variant="contained"
             color="primary"
           >
@@ -39,7 +44,13 @@ export default (): JSX.Element => {
         </Grid>
       </Grid>
 
-      <Rating />
+      {course.ratings ? (
+        course.ratings.map((courseRating) => (
+          <Rating courseRating={courseRating} />
+        ))
+      ) : (
+        <Typography> No Ratings yet!</Typography>
+      )}
     </>
   )
 }
