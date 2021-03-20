@@ -1,15 +1,16 @@
 import React from "react"
 import MainLayout from "./layout/MainLayout"
-import Course from "./pages/Course"
-import Courses from "./pages/Courses"
-import FindCourseToRate from "./pages/FindCourseToRate"
-import RateCourse from "./pages/RateCourse"
-import ThanksForRating from "./pages/ThanksForRating"
+import CoursePage from "./pages/Course"
+import CoursesPage from "./pages/Courses"
+import FindCourseToRatePage from "./pages/FindCourseToRate"
+import RateCoursePage from "./pages/RateCourse"
+import ThanksForRatingPage from "./pages/ThanksForRating"
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const routes = (
   darkMode: boolean,
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>,
+  courses: Courses
 ) => [
   {
     path: "/",
@@ -17,23 +18,23 @@ const routes = (
     children: [
       {
         path: "/",
-        element: <Courses />,
+        element: <CoursesPage courses={courses} />,
       },
       {
         path: "find-course-to-rate",
-        element: <FindCourseToRate />,
+        element: <FindCourseToRatePage />,
       },
       {
-        path: "/course/:courseId",
-        element: <Course />,
+        path: "course/:courseId",
+        element: <CoursePage courses={courses} />,
       },
       {
-        path: "/rate-course/:courseId",
-        element: <RateCourse />,
+        path: "rate-course/:courseId",
+        element: <RateCoursePage />,
       },
       {
         path: "thanks-for-rating",
-        element: <ThanksForRating />,
+        element: <ThanksForRatingPage />,
       },
     ],
   },

@@ -32,8 +32,6 @@ export default (): JSX.Element => {
   const [feedback, setFeedback] = useState("")
   const [totalRating, setTotalRating] = useState<number | null>(null)
 
-  console.log(totalRating)
-
   return (
     <>
       <Title />

@@ -12,15 +12,20 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export default (): JSX.Element => {
+export interface TitleProps {
+  course: Course
+}
+
+export default (props: TitleProps): JSX.Element => {
+  const { course } = props
   const classes = useStyles()
 
   return (
     <Grid container spacing={2} justify="space-between" alignItems="center">
       <Grid item>
-        <Typography display="inline"> Course Name </Typography>
+        <Typography display="inline"> {course.name} </Typography>
         <Typography variant="subtitle2" className={classes.courseCode}>
-          Course code
+          {course.code}
         </Typography>
       </Grid>
       <Grid item>

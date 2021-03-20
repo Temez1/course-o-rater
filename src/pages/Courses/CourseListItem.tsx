@@ -8,7 +8,7 @@ import {
 } from "react-router-dom"
 import { Typography } from "@material-ui/core"
 
-interface CourseListItemProps {
+export interface CourseListItemProps {
   course: Course
   to: string
 }
@@ -25,27 +25,13 @@ export default (props: CourseListItemProps): JSX.Element => {
     [to]
   )
 
-  let totalCourseRatingsAverage
-
-  if (course.ratings) {
-    totalCourseRatingsAverage =
-      course.ratings.reduce(
-        (accumulator, courseRating) => accumulator + courseRating.totalRating,
-        0
-      ) / course.ratings.length
-  }
-
   return (
     <li>
       <ListItem button component={renderLink}>
         <ListItemText primary={course.name} />
         <ListItemText primary={course.code} />
-        {totalCourseRatingsAverage ? (
-          <Rating
-            readOnly
-            precision={0.5}
-            defaultValue={totalCourseRatingsAverage}
-          />
+        {course.totalRating ? (
+          <Rating readOnly precision={0.5} defaultValue={course.totalRating} />
         ) : (
           <Typography>No ratings yet!</Typography>
         )}
