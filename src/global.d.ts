@@ -7,12 +7,20 @@ declare global {
   type Course = {
     id: string
     name: string
+    totalRating: number | undefined
     description: string
     code: string
     ratings: Array<CourseRating> | null
   }
 
-  type Courses = Array<Course>
+  type CourseQuery = {
+    name: string
+    description: string
+    code: string
+    ratings: Array<CourseRating> | null
+  }
+
+  type Courses = Array<Course> | null
 }
 
 export {}
