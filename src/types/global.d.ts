@@ -1,3 +1,5 @@
+import { TotalRating } from "./notGlobal"
+
 declare global {
   type CourseRating = {
     totalRating: number
@@ -7,7 +9,7 @@ declare global {
   type Course = {
     id: string
     name: string
-    totalRating: number | undefined
+    totalRating: TotalRating
     description: string
     code: string
     ratings: Array<CourseRating> | null
