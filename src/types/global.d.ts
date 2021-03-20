@@ -1,4 +1,4 @@
-import { TotalRating } from "./notGlobal"
+import { CourseTotalRating } from "./notGlobal"
 
 declare global {
   type CourseRating = {
@@ -6,20 +6,22 @@ declare global {
     feedback: string
   }
 
+  type CourseRatings = Array<CourseRating> | null
+
   type Course = {
     id: string
     name: string
-    totalRating: TotalRating
+    totalRating: CourseTotalRating
     description: string
     code: string
-    ratings: Array<CourseRating> | null
+    ratings: CourseRatings
   }
 
   type CourseQuery = {
     name: string
     description: string
     code: string
-    ratings: Array<CourseRating> | null
+    ratings: CourseRatings
   }
 
   type Courses = Array<Course> | null

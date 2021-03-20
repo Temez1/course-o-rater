@@ -1,1 +1,1 @@
-export type TotalRating = number | undefined
+export type CourseTotalRating = number | undefined
