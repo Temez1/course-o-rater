@@ -13,7 +13,6 @@ export default (): JSX.Element => {
   })
   const [courses, setCourses] = useState<Courses>(null)
   const [darkMode, setDarkMode] = React.useState(prefersDarkMode)
-  const routing = useRoutes(routes(darkMode, setDarkMode, courses))
   const firestore = useFirestore()
 
   const darkTheme = createMuiTheme({
@@ -75,6 +74,8 @@ export default (): JSX.Element => {
   }, [firestore])
 
   console.log(courses)
+
+  const routing = useRoutes(routes(darkMode, setDarkMode, courses))
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>

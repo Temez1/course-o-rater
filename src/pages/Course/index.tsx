@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Grid, Divider } from "@material-ui/core"
+import { Grid, Divider, CircularProgress } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { useParams } from "react-router-dom"
 import Title from "./CourseTitle"
@@ -38,7 +38,7 @@ export default (props: CoursePageProps): JSX.Element => {
   console.log(course)
 
   if (course === undefined) {
-    return <div>Loading...</div>
+    return <CircularProgress />
   }
 
   return (

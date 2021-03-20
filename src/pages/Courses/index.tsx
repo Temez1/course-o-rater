@@ -1,5 +1,5 @@
 import React from "react"
-import { List } from "@material-ui/core"
+import { CircularProgress, List } from "@material-ui/core"
 import "firebase/firestore"
 import CourseListItem from "./CourseListItem"
 
@@ -9,6 +9,10 @@ export interface CoursesPageProps {
 
 export default (props: CoursesPageProps): JSX.Element => {
   const { courses } = props
+
+  if (courses === null) {
+    return <CircularProgress />
+  }
 
   return (
     <List aria-label="List of courses">
