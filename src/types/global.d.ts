@@ -19,7 +19,7 @@ declare global {
 
   type Courses = Array<Course> | null
 
-  type CourseQuery = {
+  type CourseData = {
     name: string
     description: string
     code: string

@@ -46,7 +46,7 @@ export default (): JSX.Element => {
         }
         setCourses(
           coursesQuery.docs.map((doc) => {
-            const courseData = doc.data() as CourseQuery
+            const courseData = doc.data() as CourseData
 
             let courseTotalRating: undefined | number
 
