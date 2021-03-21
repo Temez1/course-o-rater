@@ -1,4 +1,5 @@
 import React from "react"
+import { Button } from "@material-ui/core"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
 import Hidden from "@material-ui/core/Hidden"
@@ -21,6 +22,10 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
+import { useAuth, useUser } from "reactfire"
+import firebase from "firebase/app"
+import "firebase/auth"
+
 import AppBar from "./AppBar"
 
 const drawerWidth = 240
@@ -82,6 +87,18 @@ export default ({
   const classes = useStyles()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const auth = useAuth()
+  const user = useUser()
+
+  const signIn = async () => {
+    await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+  }
+
+  const signOut = async () => {
+    await auth.signOut()
+  }
+
+  console.log("Mun tiedot", user.data)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -120,6 +137,9 @@ export default ({
           </ListItemSecondaryAction>
         </ListItem>
       </List>
+      <Button onClick={signIn} variant="contained">
+        Sign in with google
+      </Button>
     </div>
   )
 
