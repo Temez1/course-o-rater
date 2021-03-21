@@ -20,6 +20,7 @@ export default (props: TitleProps): JSX.Element => {
   const { course } = props
   const classes = useStyles()
 
+  console.log("Course data", course)
   return (
     <Grid container spacing={2} justify="space-between" alignItems="center">
       <Grid item>
@@ -29,7 +30,7 @@ export default (props: TitleProps): JSX.Element => {
         </Typography>
       </Grid>
       <Grid item>
-        <DisplayCourseTotalRating totalRating={course.totalRating} />
+        <DisplayCourseTotalRating avgRating={course.avgRating} />
       </Grid>
     </Grid>
   )

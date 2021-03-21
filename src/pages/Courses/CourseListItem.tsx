@@ -28,8 +28,7 @@ export default (props: CourseListItemProps): JSX.Element => {
     <li>
       <ListItem button component={renderLink}>
         <ListItemText primary={course.name} />
-        <ListItemText primary={course.code} />
-        <DisplayCourseTotalRating totalRating={course.totalRating} />
+        <DisplayCourseTotalRating avgRating={course.avgRating} />
       </ListItem>
     </li>
   )
