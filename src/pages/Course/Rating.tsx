@@ -23,6 +23,8 @@ export default (props: CourseRatingProps): JSX.Element => {
   const { courseRating } = props
   const classes = useStyles()
 
+  console.log(courseRating)
+
   return (
     <Grid
       container
@@ -34,18 +36,20 @@ export default (props: CourseRatingProps): JSX.Element => {
       <Grid item>
         <Typography display="inline"> Name of Rater</Typography>
         <Typography variant="subtitle2" className={classes.ratingDate}>
-          28.1.2021
+          {courseRating.createdAt.toDate().toLocaleDateString()}
         </Typography>
       </Grid>
       <Grid item>
-        <Rating readOnly size="small" precision={0.5} defaultValue={3.3} />
+        <Rating
+          readOnly
+          size="small"
+          precision={0.5}
+          defaultValue={courseRating.total}
+        />
       </Grid>
 
       <Grid item xs={12}>
-        <Typography variant="body2">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industrys standard dummy
-        </Typography>
+        <Typography variant="body2">{courseRating.feedback}</Typography>
       </Grid>
     </Grid>
   )
