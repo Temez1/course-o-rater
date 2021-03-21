@@ -1,9 +1,27 @@
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions"
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+import * as admin from "firebase-admin"
+
+admin.initializeApp()
+
+export const updateCourseAverageRating = functions
+  .region("europe-west1")
+  .firestore.document("/courses/{courseId}/ratings/{ratingId}")
+  .onWrite(async (snap, context) => {
+    const { courseId } = context.params
+    const db = admin.firestore()
+    const courseRatings = await db
+      .doc(`/courses/${courseId}`)
+      .collection("ratings")
+      .get()
+
+    const average =
+      courseRatings.docs
+        .map((rating) => rating.data().total)
+        .reduce((accumulator, value) => accumulator + value, 0) /
+      courseRatings.docs.length
+
+    await db.doc(`/courses/${courseId}`).update({ avgRating: average })
+
+    return "Updated successfully"
+  })
