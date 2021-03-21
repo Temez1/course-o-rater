@@ -9,8 +9,7 @@ import ThanksForRatingPage from "./pages/ThanksForRating"
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const routes = (
   darkMode: boolean,
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>,
-  courses: Courses
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
 ) => [
   {
     path: "/",
@@ -18,7 +17,7 @@ const routes = (
     children: [
       {
         path: "/",
-        element: <CoursesPage courses={courses} />,
+        element: <CoursesPage />,
       },
       {
         path: "find-course-to-rate",
@@ -26,14 +25,14 @@ const routes = (
       },
       {
         path: "course/:courseId",
-        element: <CoursePage courses={courses} />,
+        element: <CoursePage />,
       },
       {
         path: "rate-course/:courseId",
         element: <RateCoursePage />,
       },
       {
-        path: "thanks-for-rating",
+        path: "thanks-for-rating/:courseId",
         element: <ThanksForRatingPage />,
       },
     ],

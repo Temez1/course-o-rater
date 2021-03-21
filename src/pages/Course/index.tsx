@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Grid, Divider, CircularProgress } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { useParams } from "react-router-dom"
+import { useFirestoreDocData, useFirestore } from "reactfire"
 import Title from "./CourseTitle"
 import CourseRatings from "./CourseRatings"
 
@@ -13,37 +14,22 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export interface CoursePageProps {
-  courses: Courses
-}
-
-export default (props: CoursePageProps): JSX.Element => {
-  const { courses } = props
+export default (): JSX.Element => {
   const classes = useStyles()
   const { courseId } = useParams()
 
-  const [course, setCourse] = useState<Course | undefined>(undefined)
+  const courseRef = useFirestore().collection("courses").doc(courseId)
+  const courseRatingsRef = courseRef.collection("ratings")
 
-  useEffect(() => {
-    if (courses) {
-      const courseToFind = courses.find((courseD) => courseD.id === courseId)
+  const courseObservable = useFirestoreDocData(courseRef, { idField: "id" })
 
-      if (courseToFind === undefined) {
-        console.error("Course data not found at Course page with id", courseId)
-      }
-      setCourse(courseToFind)
-    }
-  }, [courseId, courses])
-
-  console.log(course)
-
-  if (course === undefined) {
+  if (courseObservable.status === "loading") {
     return <CircularProgress />
   }
 
   return (
     <>
-      <Title course={course} />
+      <Title course={courseObservable.data as Course} />
 
       <Grid container className={classes.divider}>
         <Grid item xs={12}>
@@ -51,7 +37,10 @@ export default (props: CoursePageProps): JSX.Element => {
         </Grid>
       </Grid>
 
-      <CourseRatings course={course} />
+      <CourseRatings
+        courseData={courseObservable.data as Course}
+        ratingsRef={courseRatingsRef}
+      />
     </>
   )
 }
