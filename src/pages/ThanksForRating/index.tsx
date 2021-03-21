@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Button, Grid, Typography } from "@material-ui/core"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default (): JSX.Element => {
   const classes = useStyles()
+  const { courseId } = useParams()
 
   return (
     <>
@@ -51,7 +52,7 @@ export default (): JSX.Element => {
         <Grid item xs={12} className={classes.seeRatingButtonItem}>
           <Button
             component={Link}
-            to="/course/Coursecode"
+            to={`/course/${courseId}`}
             variant="contained"
             color="primary"
             size="large"
@@ -62,7 +63,7 @@ export default (): JSX.Element => {
         <Grid item xs={12} className={classes.rateMoreButtonItem}>
           <Button
             component={Link}
-            to="/find-course-to-rate"
+            to="/"
             variant="contained"
             color="primary"
             size="large"
