@@ -1,29 +1,20 @@
-import { CourseTotalRating } from "./notGlobal"
+import type { Timestamp, CollectionReference } from "@firebase/firestore-types"
 
 declare global {
-  type CourseRating = {
-    totalRating: number
-    feedback: string
-  }
-
-  type CourseRatings = Array<CourseRating> | null
-
   type Course = {
-    id: string
+    id?: string
     name: string
-    totalRating: CourseTotalRating
+    avgRating: number | undefined
     description: string
     code: string
-    ratings: CourseRatings
+    ratings?: CollectionReference<CourseRating>
   }
 
-  type Courses = Array<Course> | null
-
-  type CourseData = {
-    name: string
-    description: string
-    code: string
-    ratings: CourseRatings
+  type CourseRating = {
+    id?: string
+    total: number
+    feedback: string
+    createdAt: Timestamp
   }
 }
 
