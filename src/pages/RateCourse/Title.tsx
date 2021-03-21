@@ -14,15 +14,22 @@ const useStyles = makeStyles(() =>
     },
   })
 )
-export default (): JSX.Element => {
+
+export interface TitleProps {
+  course: Course
+}
+
+export default (props: TitleProps): JSX.Element => {
+  const { course } = props
+
   const classes = useStyles()
   return (
     <Grid container spacing={1} justify="center">
       <Grid item xs={12} className={classes.courseNameItem}>
-        <Typography>Course name</Typography>
+        <Typography> {course.name} </Typography>
       </Grid>
       <Grid item xs={12} className={classes.courseCodeItem}>
-        <Typography variant="subtitle2">Course code</Typography>
+        <Typography variant="subtitle2">{course.code}</Typography>
       </Grid>
     </Grid>
   )
