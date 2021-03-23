@@ -11,7 +11,7 @@ export default function DisplayCourseTotalRating(
 ): JSX.Element {
   const { avgRating } = props
   return avgRating ? (
-    <Rating readOnly precision={0.1} defaultValue={avgRating} />
+    <Rating readOnly precision={0.1} value={avgRating} />
   ) : (
     <Typography>No ratings yet!</Typography>
   )
