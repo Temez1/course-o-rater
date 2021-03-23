@@ -3,19 +3,23 @@ import { CircularProgress, List } from "@material-ui/core"
 import "firebase/firestore"
 import { useFirestore, useFirestoreCollection } from "reactfire"
 import type { QuerySnapshot } from "@firebase/firestore-types"
+import { useSnackbar } from "notistack"
+
 import CourseListItem from "./CourseListItem"
 
 export default (): JSX.Element => {
   const coursesRef = useFirestore().collection("courses")
   const { status, data } = useFirestoreCollection(coursesRef)
-
-  console.log("Status", status)
+  const { enqueueSnackbar } = useSnackbar()
 
   switch (status) {
     case "loading":
       return <CircularProgress />
     case "error":
-      throw new Error("Cannot fetch courses")
+      enqueueSnackbar("Failed to get courses! Please try to refresh page.", {
+        variant: "error",
+      })
+      return <></>
     case "success": {
       return (
         <List aria-label="List of courses">
@@ -30,6 +34,9 @@ export default (): JSX.Element => {
       )
     }
     default:
-      throw new Error("Cannot fetch courses")
+      enqueueSnackbar("Unknown error.", {
+        variant: "error",
+      })
+      return <></>
   }
 }
