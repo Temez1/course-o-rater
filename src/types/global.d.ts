@@ -1,4 +1,4 @@
-import type { Timestamp, CollectionReference } from "@firebase/firestore-types"
+import type { Timestamp } from "@firebase/firestore-types"
 
 declare global {
   type Course = {
@@ -7,7 +7,6 @@ declare global {
     avgRating: number | undefined
     description: string
     code: string
-    ratings?: CollectionReference<CourseRating>
   }
 
   type CourseRating = {
@@ -15,6 +14,7 @@ declare global {
     total: number
     feedback: string
     createdAt: Timestamp
+    userId: string
   }
 }
 

@@ -4,7 +4,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Rating } from "@material-ui/lab"
 import { useNavigate, useParams } from "react-router-dom"
 import type { Timestamp } from "@firebase/firestore-types"
-import { useFirestore, useFirestoreDocDataOnce } from "reactfire"
+import { useFirestore, useFirestoreDocDataOnce, useUser } from "reactfire"
 import { useSnackbar } from "notistack"
 
 import Title from "./Title"
@@ -36,6 +36,7 @@ export default (): JSX.Element => {
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
   const fieldValue = useFirestore.FieldValue
+  const { data: user } = useUser()
 
   const [feedback, setFeedback] = useState("")
   const [totalRating, setTotalRating] = useState<number | null>(null)
@@ -48,16 +49,17 @@ export default (): JSX.Element => {
     event.preventDefault()
 
     if (totalRating === null) {
-      enqueueSnackbar("Please rate the course", {
+      enqueueSnackbar("Please give a rating", {
         variant: "error",
       })
       return
     }
 
     const courseRating: CourseRating = {
-      total: totalRating || 0,
+      total: totalRating,
       feedback,
       createdAt: fieldValue.serverTimestamp() as Timestamp,
+      userId: user.uid,
     }
 
     try {

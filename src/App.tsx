@@ -4,6 +4,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import { CssBaseline } from "@material-ui/core"
 import lightBlue from "@material-ui/core/colors/lightBlue"
+import { useUser } from "reactfire"
 
 import routes from "./routes"
 
@@ -33,7 +34,8 @@ export default (): JSX.Element => {
     },
   })
 
-  const routing = useRoutes(routes(darkMode, setDarkMode))
+  const { data: user } = useUser()
+  const routing = useRoutes(routes(darkMode, setDarkMode, user))
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>

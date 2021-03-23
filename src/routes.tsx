@@ -1,4 +1,6 @@
 import React from "react"
+import { Navigate } from "react-router-dom"
+import firebase from "firebase/app"
 import MainLayout from "./layout/MainLayout"
 import CoursePage from "./pages/Course"
 import CoursesPage from "./pages/Courses"
@@ -9,7 +11,8 @@ import ThanksForRatingPage from "./pages/ThanksForRating"
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const routes = (
   darkMode: boolean,
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>,
+  user: firebase.User
 ) => [
   {
     path: "/",
@@ -29,7 +32,7 @@ const routes = (
       },
       {
         path: "rate-course/:courseId",
-        element: <RateCoursePage />,
+        element: user ? <RateCoursePage /> : <Navigate to="/" />,
       },
       {
         path: "thanks-for-rating/:courseId",

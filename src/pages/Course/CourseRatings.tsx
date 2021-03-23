@@ -1,8 +1,8 @@
 import React from "react"
 import { Button, Grid, Typography, CircularProgress } from "@material-ui/core"
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
-import { Link } from "react-router-dom"
-import { useFirestoreCollection } from "reactfire"
+import { useNavigate } from "react-router-dom"
+import { useFirestoreCollection, useUser } from "reactfire"
 import type {
   CollectionReference,
   QuerySnapshot,
@@ -34,10 +34,22 @@ export default (props: CourseRatingsProps): JSX.Element => {
   const { ratingsRef, courseData } = props
   const classes = useStyles()
   const { enqueueSnackbar } = useSnackbar()
+  const navigate = useNavigate()
 
+  const { data: user } = useUser()
   const { status, data } = useFirestoreCollection(
     ratingsRef.orderBy("createdAt", "desc")
   )
+
+  const handleRateButtonClick = () => {
+    if (!user) {
+      enqueueSnackbar("Please sign in to rate a course.", {
+        variant: "info",
+      })
+    } else {
+      navigate(`/rate-course/${courseData.id}`)
+    }
+  }
 
   switch (status) {
     case "loading": {
@@ -66,8 +78,7 @@ export default (props: CourseRatingsProps): JSX.Element => {
 
             <Grid item className={classes.rateItem}>
               <Button
-                component={Link}
-                to={`/rate-course/${courseData.id}`}
+                onClick={handleRateButtonClick}
                 variant="contained"
                 color="primary"
               >
