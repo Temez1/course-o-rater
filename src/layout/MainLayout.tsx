@@ -2,6 +2,7 @@ import React from "react"
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
 import { Outlet } from "react-router-dom"
 import Paper from "@material-ui/core/Paper"
+import { SnackbarProvider } from "notistack"
 import ResponsiveDrawer from "./ResponsiveDrawer"
 
 type MainLayoutProps = {
@@ -29,15 +30,18 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 export default ({ darkMode, setDarkMode }: MainLayoutProps): JSX.Element => {
   const classes = useStyles()
+
   return (
     <div className={classes.root}>
-      <ResponsiveDrawer darkMode={darkMode} setDarkMode={setDarkMode} />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Paper className={classes.paper}>
-          <Outlet />
-        </Paper>
-      </main>
+      <SnackbarProvider>
+        <ResponsiveDrawer darkMode={darkMode} setDarkMode={setDarkMode} />
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Paper className={classes.paper}>
+            <Outlet />
+          </Paper>
+        </main>
+      </SnackbarProvider>
     </div>
   )
 }

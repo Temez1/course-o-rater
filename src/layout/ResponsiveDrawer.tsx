@@ -25,6 +25,7 @@ import {
 import { useAuth, useUser } from "reactfire"
 import firebase from "firebase/app"
 import "firebase/auth"
+import { useSnackbar } from "notistack"
 
 import AppBar from "./AppBar"
 
@@ -89,24 +90,31 @@ export default ({
   const [mobileOpen, setMobileOpen] = useState(false)
   const auth = useAuth()
   const user = useUser()
+  const { enqueueSnackbar } = useSnackbar()
 
   const signIn = async () => {
     try {
-      await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      const result = await auth.signInWithPopup(
+        new firebase.auth.GoogleAuthProvider()
+      )
+      enqueueSnackbar(`Welcome ${result.user?.displayName}!`, {
+        variant: "success",
+      })
     } catch (error) {
-      console.error("Failed to login", error)
+      enqueueSnackbar("Failed to sign in", { variant: "error" })
     }
   }
 
   const signOut = async () => {
     try {
       await auth.signOut()
+      enqueueSnackbar(`Good bye ${user.data.displayName}`, {
+        variant: "success",
+      })
     } catch (error) {
-      console.error("Failed to sign out", error)
+      enqueueSnackbar("Failed to sign out", { variant: "error" })
     }
   }
-
-  console.log("Mun tiedot", user.data)
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
