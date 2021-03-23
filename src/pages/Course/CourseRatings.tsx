@@ -35,7 +35,9 @@ export default (props: CourseRatingsProps): JSX.Element => {
   const classes = useStyles()
   const { enqueueSnackbar } = useSnackbar()
 
-  const { status, data } = useFirestoreCollection(ratingsRef)
+  const { status, data } = useFirestoreCollection(
+    ratingsRef.orderBy("createdAt", "desc")
+  )
 
   switch (status) {
     case "loading": {
