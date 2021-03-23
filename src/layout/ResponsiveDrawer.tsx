@@ -9,7 +9,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import ListItemText from "@material-ui/core/ListItemText"
 import SchoolIcon from "@material-ui/icons/School"
-import StarIcon from "@material-ui/icons/Star"
 import LightBulbIcon from "@material-ui/icons/WbIncandescent"
 import Switch from "@material-ui/core/Switch"
 import {
