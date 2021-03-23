@@ -1,7 +1,6 @@
 import React from "react"
 import { Button, Grid, Typography, CircularProgress } from "@material-ui/core"
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
-import { Alert } from "@material-ui/lab/"
 import { Link } from "react-router-dom"
 import { useFirestoreCollection } from "reactfire"
 import type {
@@ -9,6 +8,7 @@ import type {
   QuerySnapshot,
   DocumentData,
 } from "@firebase/firestore-types"
+import { useSnackbar } from "notistack"
 import Rating from "./Rating"
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -33,20 +33,22 @@ export interface CourseRatingsProps {
 export default (props: CourseRatingsProps): JSX.Element => {
   const { ratingsRef, courseData } = props
   const classes = useStyles()
+  const { enqueueSnackbar } = useSnackbar()
 
   const { status, data } = useFirestoreCollection(ratingsRef)
 
-  console.log("courseData", courseData)
   switch (status) {
     case "loading": {
       return <CircularProgress />
     }
     case "error": {
-      return (
-        <Alert severity="error">
-          Error fetching data. Please refresh the page
-        </Alert>
+      enqueueSnackbar(
+        "Failed to get the course ratings! Please try to refresh page.",
+        {
+          variant: "error",
+        }
       )
+      return <></>
     }
     case "success": {
       return (
@@ -82,8 +84,12 @@ export default (props: CourseRatingsProps): JSX.Element => {
         </>
       )
     }
+
     default: {
-      return <Alert severity="error">Unknown error occured.</Alert>
+      enqueueSnackbar("Unknown error.", {
+        variant: "error",
+      })
+      return <></>
     }
   }
 }

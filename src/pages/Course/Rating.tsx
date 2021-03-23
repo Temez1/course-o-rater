@@ -23,8 +23,6 @@ export default (props: CourseRatingProps): JSX.Element => {
   const { courseRating } = props
   const classes = useStyles()
 
-  console.log(courseRating)
-
   return (
     <Grid
       container
