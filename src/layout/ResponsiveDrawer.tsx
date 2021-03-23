@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Button } from "@material-ui/core"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
@@ -86,16 +86,24 @@ export default ({
 }: ResponsiveDrawerProps): JSX.Element => {
   const classes = useStyles()
   const theme = useTheme()
-  const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const auth = useAuth()
   const user = useUser()
 
   const signIn = async () => {
-    await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    try {
+      await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    } catch (error) {
+      console.error("Failed to login", error)
+    }
   }
 
   const signOut = async () => {
-    await auth.signOut()
+    try {
+      await auth.signOut()
+    } catch (error) {
+      console.error("Failed to sign out", error)
+    }
   }
 
   console.log("Mun tiedot", user.data)
@@ -137,9 +145,15 @@ export default ({
           </ListItemSecondaryAction>
         </ListItem>
       </List>
-      <Button onClick={signIn} variant="contained">
-        Sign in with google
-      </Button>
+      {user.data ? (
+        <Button onClick={signOut} variant="contained">
+          Sign out
+        </Button>
+      ) : (
+        <Button onClick={signIn} variant="contained">
+          Sign in with google
+        </Button>
+      )}
     </div>
   )
 
