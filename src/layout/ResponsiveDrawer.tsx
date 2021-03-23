@@ -130,11 +130,6 @@ export default ({
       <Divider />
       <List>
         <ListItemLink to="/" primary="Courses" icon={<SchoolIcon />} />
-        <ListItemLink
-          to="/find-course-to-rate"
-          primary="Rate Course"
-          icon={<StarIcon />}
-        />
       </List>
       <Divider />
       <List>
