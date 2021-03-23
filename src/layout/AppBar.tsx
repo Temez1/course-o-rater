@@ -50,7 +50,7 @@ export default ({
           <MenuIcon />
         </IconButton>
         <Typography className={classes.title} variant="h6" noWrap>
-          Course-O-Rater
+          Course-O-Rater Aalto Demo
         </Typography>
       </Toolbar>
     </AppBar>
