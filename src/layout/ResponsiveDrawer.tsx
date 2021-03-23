@@ -33,7 +33,7 @@ const drawerWidth = 240
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     drawer: {
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("lg")]: {
         width: drawerWidth,
         flexShrink: 0,
       },
@@ -167,7 +167,7 @@ export default ({
       />
       <nav className={classes.drawer} aria-label="Main Navigation">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
+        <Hidden lgUp implementation="css">
           <Drawer
             variant="temporary"
             anchor={theme.direction === "rtl" ? "right" : "left"}
@@ -183,7 +183,7 @@ export default ({
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden mdDown implementation="css">
           <Drawer
             classes={{
               paper: classes.drawerPaper,
