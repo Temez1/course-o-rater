@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
     drawerPaper: {
       width: drawerWidth,
     },
+    signInSignOutDiv: { textAlign: "center" },
   })
 )
 
@@ -147,15 +148,17 @@ export default ({
           </ListItemSecondaryAction>
         </ListItem>
       </List>
-      {user.data ? (
-        <Button onClick={signOut} variant="contained">
-          Sign out
-        </Button>
-      ) : (
-        <Button onClick={signIn} variant="contained">
-          Sign in with google
-        </Button>
-      )}
+      <div className={classes.signInSignOutDiv}>
+        {user.data ? (
+          <Button onClick={signOut} variant="contained">
+            Sign out
+          </Button>
+        ) : (
+          <Button onClick={signIn} variant="contained">
+            Sign in with google
+          </Button>
+        )}
+      </div>
     </div>
   )
 
