@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, Divider, CircularProgress } from "@material-ui/core"
+import { Grid, Divider, CircularProgress, Typography } from "@material-ui/core"
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles"
 import { useParams } from "react-router-dom"
 import { useFirestoreDocData, useFirestore } from "reactfire"
@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     divider: {
       padding: `${theme.spacing(3)}px 0px`,
+    },
+    courseDescription: {
+      marginTop: theme.spacing(3),
     },
   })
 )
@@ -38,6 +41,10 @@ export default (): JSX.Element => {
       return (
         <>
           <Title course={courseObservable.data as Course} />
+
+          <Typography className={classes.courseDescription}>
+            {(courseObservable.data as Course).description}
+          </Typography>
 
           <Grid container className={classes.divider}>
             <Grid item xs={12}>
