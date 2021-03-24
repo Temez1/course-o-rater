@@ -23,10 +23,10 @@ export default (props: TitleProps): JSX.Element => {
   return (
     <Grid container spacing={2} justify="space-between" alignItems="center">
       <Grid item>
-        <Typography display="inline"> {course.name} </Typography>
-        <Typography variant="subtitle2" className={classes.courseCode}>
-          {course.code}
+        <Typography variant="h5" display="inline">
+          {course.name}
         </Typography>
+        <Typography className={classes.courseCode}>{course.code}</Typography>
       </Grid>
       <Grid item>
         <DisplayCourseTotalRating avgRating={course.avgRating} />
