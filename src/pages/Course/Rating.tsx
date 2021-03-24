@@ -8,10 +8,6 @@ const useStyles = makeStyles((theme: Theme) =>
     ratingContainer: {
       marginBottom: theme.spacing(2),
     },
-    ratingDate: {
-      paddingLeft: theme.spacing(1),
-      display: "inline",
-    },
   })
 )
 
@@ -32,8 +28,7 @@ export default (props: CourseRatingProps): JSX.Element => {
       className={classes.ratingContainer}
     >
       <Grid item>
-        <Typography display="inline"> Name of Rater</Typography>
-        <Typography variant="subtitle2" className={classes.ratingDate}>
+        <Typography variant="subtitle2">
           {courseRating.createdAt.toDate().toLocaleDateString()}
         </Typography>
       </Grid>
