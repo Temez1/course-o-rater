@@ -44,11 +44,10 @@ type ListItemLinkProps = {
   icon?: React.ReactElement
   primary: string
   to: string
-  handleDrawerToggle: () => void
 }
 
 const ListItemLink = (props: ListItemLinkProps) => {
-  const { icon, primary, to, handleDrawerToggle } = props
+  const { icon, primary, to } = props
 
   const renderLink = React.useMemo(
     () =>
@@ -61,7 +60,7 @@ const ListItemLink = (props: ListItemLinkProps) => {
 
   return (
     <li>
-      <ListItem button component={renderLink} onClick={handleDrawerToggle}>
+      <ListItem button component={renderLink}>
         {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
         <ListItemText primary={primary} />
       </ListItem>
@@ -95,12 +94,7 @@ export default ({
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItemLink
-          to="/"
-          primary="Courses"
-          icon={<SchoolIcon />}
-          handleDrawerToggle={handleDrawerToggle}
-        />
+        <ListItemLink to="/" primary="Courses" icon={<SchoolIcon />} />
       </List>
       <Divider />
       {/* {<List>
