@@ -44,10 +44,11 @@ type ListItemLinkProps = {
   icon?: React.ReactElement
   primary: string
   to: string
+  setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ListItemLink = (props: ListItemLinkProps) => {
-  const { icon, primary, to } = props
+  const { icon, primary, to, setMobileOpen } = props
 
   const renderLink = React.useMemo(
     () =>
@@ -60,7 +61,11 @@ const ListItemLink = (props: ListItemLinkProps) => {
 
   return (
     <li>
-      <ListItem button component={renderLink}>
+      <ListItem
+        button
+        component={renderLink}
+        onClick={() => setMobileOpen(false)}
+      >
         {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
         <ListItemText primary={primary} />
       </ListItem>
@@ -94,7 +99,12 @@ export default ({
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItemLink to="/" primary="Courses" icon={<SchoolIcon />} />
+        <ListItemLink
+          to="/"
+          primary="Courses"
+          icon={<SchoolIcon />}
+          setMobileOpen={setMobileOpen}
+        />
       </List>
       <Divider />
       {/* {<List>
