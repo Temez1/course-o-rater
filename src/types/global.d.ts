@@ -4,6 +4,7 @@ declare global {
   type Course = {
     id?: string
     name: string
+    createdAt: Timestamp
     avgRating: number | undefined
     description: string
     code: string

@@ -5,6 +5,11 @@ import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles"
 import MenuIcon from "@material-ui/icons/Menu"
+import { Button } from "@material-ui/core"
+import firebase from "firebase/app"
+import "firebase/auth"
+import { useSnackbar } from "notistack"
+import { useAuth, useUser } from "reactfire"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,6 +41,33 @@ export default ({
   drawerWidth,
 }: AppBarProps): JSX.Element => {
   const classes = useStyles(drawerWidth)
+  const auth = useAuth()
+  const user = useUser()
+  const { enqueueSnackbar } = useSnackbar()
+
+  const signIn = async () => {
+    try {
+      const result = await auth.signInWithPopup(
+        new firebase.auth.GoogleAuthProvider()
+      )
+      enqueueSnackbar(`Welcome ${result.user?.displayName}!`, {
+        variant: "success",
+      })
+    } catch (error) {
+      enqueueSnackbar("Failed to sign in", { variant: "error" })
+    }
+  }
+
+  const signOut = async () => {
+    try {
+      await auth.signOut()
+      enqueueSnackbar(`Good bye ${user.data.displayName}`, {
+        variant: "success",
+      })
+    } catch (error) {
+      enqueueSnackbar("Failed to sign out", { variant: "error" })
+    }
+  }
 
   return (
     <AppBar className={classes.appBar}>
@@ -50,8 +82,17 @@ export default ({
           <MenuIcon />
         </IconButton>
         <Typography className={classes.title} variant="h6" noWrap>
-          Course-O-Rater Aalto Demo
+          Course-O-Rater
         </Typography>
+        {user.data ? (
+          <Button onClick={signOut} variant="contained">
+            Sign out
+          </Button>
+        ) : (
+          <Button onClick={signIn} variant="contained">
+            Sign in
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   )

@@ -1,16 +1,12 @@
 import React, { useState } from "react"
-import { Button } from "@material-ui/core"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
 import Hidden from "@material-ui/core/Hidden"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import ListItemText from "@material-ui/core/ListItemText"
 import SchoolIcon from "@material-ui/icons/School"
-import LightBulbIcon from "@material-ui/icons/WbIncandescent"
-import Switch from "@material-ui/core/Switch"
 import {
   makeStyles,
   useTheme,
@@ -21,10 +17,6 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
-import { useAuth, useUser } from "reactfire"
-import firebase from "firebase/app"
-import "firebase/auth"
-import { useSnackbar } from "notistack"
 
 import AppBar from "./AppBar"
 
@@ -88,33 +80,6 @@ export default ({
   const classes = useStyles()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const auth = useAuth()
-  const user = useUser()
-  const { enqueueSnackbar } = useSnackbar()
-
-  const signIn = async () => {
-    try {
-      const result = await auth.signInWithPopup(
-        new firebase.auth.GoogleAuthProvider()
-      )
-      enqueueSnackbar(`Welcome ${result.user?.displayName}!`, {
-        variant: "success",
-      })
-    } catch (error) {
-      enqueueSnackbar("Failed to sign in", { variant: "error" })
-    }
-  }
-
-  const signOut = async () => {
-    try {
-      await auth.signOut()
-      enqueueSnackbar(`Good bye ${user.data.displayName}`, {
-        variant: "success",
-      })
-    } catch (error) {
-      enqueueSnackbar("Failed to sign out", { variant: "error" })
-    }
-  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -132,7 +97,7 @@ export default ({
         <ListItemLink to="/" primary="Courses" icon={<SchoolIcon />} />
       </List>
       <Divider />
-      <List>
+      {/* {<List>
         <ListItem>
           <ListItemIcon>
             <LightBulbIcon />
@@ -147,18 +112,7 @@ export default ({
             />
           </ListItemSecondaryAction>
         </ListItem>
-      </List>
-      <div className={classes.signInSignOutDiv}>
-        {user.data ? (
-          <Button onClick={signOut} variant="contained">
-            Sign out
-          </Button>
-        ) : (
-          <Button onClick={signIn} variant="contained">
-            Sign in with google
-          </Button>
-        )}
-      </div>
+      </List>} */}
     </div>
   )
 

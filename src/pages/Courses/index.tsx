@@ -8,7 +8,9 @@ import { useSnackbar } from "notistack"
 import CourseListItem from "./CourseListItem"
 
 export default (): JSX.Element => {
-  const coursesRef = useFirestore().collection("courses")
+  const coursesRef = useFirestore()
+    .collection("courses")
+    .orderBy("createdAt", "desc")
   const { status, data } = useFirestoreCollection(coursesRef)
   const { enqueueSnackbar } = useSnackbar()
 
