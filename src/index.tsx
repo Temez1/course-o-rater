@@ -5,13 +5,13 @@ import { FirebaseAppProvider } from "reactfire"
 import App from "./App"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCev7G4HPURCMS4EYG0PGryqGgijOKlm7w",
-  authDomain: "course-o-rater.firebaseapp.com",
-  projectId: "course-o-rater",
-  storageBucket: "course-o-rater.appspot.com",
-  messagingSenderId: "713909971040",
-  appId: "1:713909971040:web:6f6fd3cc74d6ccb16ebb05",
-  measurementId: "G-7QTMH3BT7Z",
+  apiKey: "AIzaSyCfbjMFJA3VEw-Q2rHmDPGpGSFQ4V4oEvQ",
+  authDomain: "tuni-course-o-rater.firebaseapp.com",
+  projectId: "tuni-course-o-rater",
+  storageBucket: "tuni-course-o-rater.appspot.com",
+  messagingSenderId: "452063471706",
+  appId: "1:452063471706:web:a67f46598689aef3895063",
+  measurementId: "G-FLJW594XT0",
 }
 
 ReactDOM.render(
@@ -19,7 +19,7 @@ ReactDOM.render(
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <BrowserRouter>
         <App />
-      </BrowserRouter>{" "}
+      </BrowserRouter>
     </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById("root")
