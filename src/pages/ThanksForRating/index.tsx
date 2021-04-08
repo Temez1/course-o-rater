@@ -24,7 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
     },
-    rateMoreButtonItem: {
+    giveFeedbackTextItem: {
+      display: "flex",
+      justifyContent: "center",
+    },
+    giveFeedbackButtonItem: {
       display: "flex",
       justifyContent: "center",
     },
@@ -60,15 +64,18 @@ export default (): JSX.Element => {
             See rating
           </Button>
         </Grid>
-        <Grid item xs={12} className={classes.rateMoreButtonItem}>
+        <Grid item xs={12} className={classes.giveFeedbackTextItem}>
+          <Typography> Rate your experience using Course-O-Rater!</Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.giveFeedbackButtonItem}>
           <Button
             component={Link}
-            to="/"
+            to="/course/course-o-rater"
             variant="contained"
             color="primary"
             size="large"
           >
-            Rate More
+            Give Feedback!
           </Button>
         </Grid>
       </Grid>

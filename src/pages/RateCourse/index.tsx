@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Grid, Button, CircularProgress } from "@material-ui/core"
+import { Grid, Button, CircularProgress, Typography } from "@material-ui/core"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Rating } from "@material-ui/lab"
 import { useNavigate, useParams } from "react-router-dom"
@@ -12,6 +12,9 @@ import Feedback from "./Feedback"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    courseDescriptionText: {
+      marginTop: theme.spacing(4),
+    },
     starsAndRateButtonContainer: {
       marginTop: theme.spacing(4),
     },
@@ -92,6 +95,10 @@ export default (): JSX.Element => {
       return (
         <>
           <Title course={course} />
+
+          <Typography align="center" className={classes.courseDescriptionText}>
+            {course.description}
+          </Typography>
 
           <form onSubmit={createReview}>
             <Feedback feedback={feedback} setFeedback={setFeedback} />

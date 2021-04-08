@@ -6,7 +6,7 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
-import SchoolIcon from "@material-ui/icons/School"
+import { RateReview, School } from "@material-ui/icons"
 import {
   makeStyles,
   useTheme,
@@ -102,7 +102,15 @@ export default ({
         <ListItemLink
           to="/"
           primary="Courses"
-          icon={<SchoolIcon />}
+          icon={<School />}
+          setMobileOpen={setMobileOpen}
+        />
+      </List>
+      <List>
+        <ListItemLink
+          to="course/course-o-rater"
+          primary="Give Feedback!"
+          icon={<RateReview />}
           setMobileOpen={setMobileOpen}
         />
       </List>
